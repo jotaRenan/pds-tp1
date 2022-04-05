@@ -1,4 +1,4 @@
-# pds-tp1
+# BETinho, o site de apostas
 
 Projeto relacionado à disciplina Prática em Desenvolvimento de Software 2022/01 da UFMG
 
