@@ -17,6 +17,5 @@ O site **não** realizará sorteios. Ele apenas permitirá apostas.
 
 ## Tecnologias
 
-Backend:
-Frontend:
-Banco de dados:
+Backend: Python (Django Framework)
+Frontend: React + Typescript
