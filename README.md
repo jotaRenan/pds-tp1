@@ -10,10 +10,10 @@ O site **não** realizará sorteios. Ele apenas permitirá apostas.
 
 ## Equipe
 
-- Bárbara Ribeiro (@barbaragribeiro)
-- Jean George (@jeanGeorge)
-- João Pedro Renan (@jotarenan)
-- Luiz Berto (@luiz787)
+- Bárbara Ribeiro (@barbaragribeiro) - Desenvolvedora Fullstack
+- Jean George (@jeanGeorge) - Desenvolvedor Fullstack
+- João Pedro Renan (@jotarenan) - Desenvolvedor Fullstack
+- Luiz Berto (@luiz787) - Desenvolvedor Fullstack
 
 ## Tecnologias
 
