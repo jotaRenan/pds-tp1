@@ -24,6 +24,16 @@ Frontend: React + Typescript
 
 <details>
   <summary>
+    <h2>Descrição do MVP:</h2>
+  </summary>
+  
+  O MVP do BETinho permitirá validar as seguintes hipoteses:
+  
+  _(work in progress)_
+</details>
+
+<details>
+  <summary>
     <h2>User stories - backlog do produto</h2>
   </summary>  
   
