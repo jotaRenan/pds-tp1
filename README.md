@@ -34,6 +34,26 @@ Frontend: React + Typescript
 
 <details>
   <summary>
+    <h2>Tarefas técnicas</h2>
+  </summary>
+  
+Front-end
+- Gerar dockerfile para o front-end (Jean)
+- Executar create-react-app (João Pedro)
+- Instalar extensões no vscode (João Pedro)
+- Configurar prettier + eslint (João Pedro)
+
+Back-end
+- Incluir/Configurar Python no dockerfile
+- Incluir/Configurar django no dockerfile
+
+Banco de dados
+- Incluir MySQL no dockerfile
+  
+</details>
+
+<details>
+  <summary>
     <h2>User stories - backlog do produto</h2>
   </summary>  
   
