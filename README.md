@@ -44,11 +44,11 @@ Front-end
 - Configurar prettier + eslint (João Pedro)
 
 Back-end
-- Incluir/Configurar Python no dockerfile
-- Incluir/Configurar django no dockerfile
+- Incluir/Configurar Python no dockerfile (Barbara)
+- Incluir/Configurar django no dockerfile (Barbara)
 
 Banco de dados
-- Incluir MySQL no dockerfile
+- Incluir MySQL no dockerfile (Luiz)
   
 </details>
 
