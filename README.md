@@ -27,7 +27,7 @@ Frontend: React + Typescript
     <h2>Descrição do MVP:</h2>
   </summary>
   
-  O MVP do BETinho permitirá validar as seguintes hipoteses:
+  O MVP do BETinho visa validar se há demanda por uma aplicação que permita as pessoas a realizarem apostas através de um ambiente virtual. A nossa hipótese é de que essa demanda existe, pois apostas são uma forma de diversão e entretenimento constante na sociedade
   
   _(work in progress)_
 </details>
@@ -125,4 +125,17 @@ Banco de dados
   
 </details>
 
-
+<details>
+  <summary>
+    <h2>Backlog da Sprint 01</h2>
+  </summary>
+  
+  A sprint 1 contemplará as seguintes histórias do backlog do produto:
+  
+  - Listagem de eventos
+  - Detalhes do evento
+  - Apostar
+  - Cadastro de eventos
+  - Cálculo de odds
+  
+</details>
