@@ -27,9 +27,14 @@ Frontend: React + Typescript
     <h2>Descrição do MVP:</h2>
   </summary>
   
-  O MVP do BETinho visa validar se há demanda por uma aplicação que permita as pessoas a realizarem apostas através de um ambiente virtual. A nossa hipótese é de que essa demanda existe, pois apostas são uma forma de diversão e entretenimento constante na sociedade
+  O MVP do BETinho visa validar se é possível e se há interesse em utilizar o meio virtual para se realizar apostas. A nossa hipótese é de que essa demanda existe, pois apostas são uma forma de diversão e entretenimento constante na sociedade, e formas de acesso ao ambiente virtual tornaram-se ubíquas. 
   
-  _(work in progress)_
+  Para isso, tomaremos as principais características encontradas em sistemas de apostas tradicionais e as reproduziremos em um site. Os tradicionais clubes de apostas em partidas esportivas, como futebol e corridas de cavalos, são a nossa principal referência.
+  
+  De forma simplificada, o nosso MVP permitirá aos usuários apostarem créditos virtuais no que acreditam que será o resultado de um evento. Ele irá calcular, com base no volume de apostas, qual é o resultado mais esperado pelos apostadores e balanceará o prêmio de acordo com isso. Em outras palavras, o BETinho buscará premiar melhor aqueles que correrem mais risco.
+  
+  Por exemplo: imagine que o evento seja um jogo do Atlético contra Cruzeiro. Se a maioria das apostas indicar uma vitória do Atlético, aqueles que apostarem no time receberão um prêmio menor caso este ganhe do que aqueles que apostarem no Cruzeiro, caso a vitória seja cruzeirense. 
+  
 </details>
 
 <details>
