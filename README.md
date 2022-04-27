@@ -134,12 +134,23 @@ Banco de dados
     <h2>Backlog da Sprint 01</h2>
   </summary>
   
-  A sprint 1 contemplará as seguintes histórias do backlog do produto:
+  A sprint 1 contemplará as seguintes histórias do backlog do produto, subdivididas em tarefas:
   
   - Listagem de eventos
+    - [Backend] Criar endpoint de listagem de todos os eventos - Bárbara
+    - [Frontend] Criar tela de listagem de eventos - João Pedro
   - Detalhes do evento
+    - [Backend] Criar endpoint de obter evento por id - Bárbara
+    - [Frontend] Criar tela de exibição de detalhes do evento - João Pedro
   - Apostar
+    - [Backend] Criar endpoint de criação de aposta - Luiz
+    - [Frontend] Criar tela de apostar - Jean
   - Cadastro de eventos
+    - [Backend] Criar endpoint de cadastro de eventos - Bárbara
+    - [Frontend] Criar tela de cadastrar evento - João Pedro
   - Cálculo de odds
+    - [Backend] Criar função de cálculo de odds - Luiz
+    - [Backend] Criar endpoint de leitura das odds de um evento - Luiz
+    - [Frontend] Criar componente para exibir odds do evento - Jean
   
 </details>
