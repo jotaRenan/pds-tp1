@@ -38,17 +38,16 @@ Frontend: React + Typescript
   </summary>
   
 Front-end
-- Gerar dockerfile para o front-end (Jean)
-- Executar create-react-app (João Pedro)
-- Instalar extensões no vscode (João Pedro)
-- Configurar prettier + eslint (João Pedro)
+- Gerar Dockerfile para o front-end e incluir no docker-compose (Jean)
+- Gerar projeto base React (João Pedro)
+- Instalar e configurar extensões do VSCode (João Pedro)
 
 Back-end
-- Incluir/Configurar Python no dockerfile (Barbara)
-- Incluir/Configurar django no dockerfile (Barbara)
+- Configurar Dockerfile de Python e incluir no docker-compose (Bárbara)
+- Configurar django (Bárbara)
 
 Banco de dados
-- Incluir MySQL no dockerfile (Luiz)
+- Incluir MySQL no docker-compose (Luiz)
   
 </details>
 
