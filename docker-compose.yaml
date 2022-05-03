@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+  test:
+    image: hello-world
+    depends_on:
+      - db
+    networks:
+      - mysql-network
+  db:
+    image: mysql:8.0.29
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: betinho
+    ports:
+      - "3306:3306"
+    volumes:
+      - $HOME/MySQLData/:/var/lib/mysql
+    networks:
+      - mysql-network
+networks:
+  mysql-network:
+    driver: bridge
+
