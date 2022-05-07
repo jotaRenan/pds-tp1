@@ -18,6 +18,19 @@ services:
       - $HOME/MySQLData/:/var/lib/mysql
     networks:
       - mysql-network
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - mysql-network
+    env_file:
+      - dev.env
 networks:
   mysql-network:
     driver: bridge
