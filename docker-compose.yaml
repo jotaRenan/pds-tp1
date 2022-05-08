@@ -28,4 +28,3 @@ services:
 networks:
   mysql-network:
     driver: bridge
-
