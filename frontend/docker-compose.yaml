@@ -1,12 +1,6 @@
 version: '3.1'
 
 services:
-  test:
-    image: hello-world
-    depends_on:
-      - db
-    networks:
-      - mysql-network
   db:
     image: mysql:8.0.29
     environment:
@@ -18,7 +12,19 @@ services:
       - $HOME/MySQLData/:/var/lib/mysql
     networks:
       - mysql-network
+  web:
+    build: .
+    command: python backend/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - mysql-network
+    env_file:
+      - ./backend/dev.env
 networks:
   mysql-network:
     driver: bridge
-
