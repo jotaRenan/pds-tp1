@@ -12,8 +12,8 @@ services:
       - $HOME/MySQLData/:/var/lib/mysql
     networks:
       - mysql-network
-  web:
-    build: .
+  backend:
+    build: ./backend
     command: python backend/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
@@ -25,6 +25,16 @@ services:
       - mysql-network
     env_file:
       - ./backend/dev.env
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend/:/app
+    ports:
+      - 3000:3000
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
 networks:
   mysql-network:
     driver: bridge
