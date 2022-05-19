@@ -1,12 +1,20 @@
-from typing import List
-from bet import Bet
+from typing import List, Tuple
+from BETinho.domain.bet import Bet
 
+class EventBetsSummary:
+    def __init__(self, bets: List[Bet]) -> None:
+        (home, away, draw) = self.split_bets_by_result(bets)
 
-class EventBets:
-    def __init__(self, home_bets: List[Bet], away_bets: List[Bet], draw_bets: List[Bet]):
-        self.home = home_bets
-        self.away = away_bets
-        self.draw = draw_bets
+        self.home = home
+        self.away = away
+        self.draw = draw
+
+    def split_bets_by_result(self, bets: List[Bet]) -> Tuple[List[Bet], List[Bet], List[Bet]]:
+        home = list(filter(lambda bet: bet.is_home_win(), bets))
+        away = list(filter(lambda bet: bet.is_away_win(), bets))
+        draw = list(filter(lambda bet: bet.is_draw(), bets))
+
+        return (home, away, draw)
 
     def total_bet_amount(self) -> float:
         return self.total_amount_bet_on_home() \

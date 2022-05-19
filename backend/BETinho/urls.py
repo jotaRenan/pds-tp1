@@ -16,6 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from BETinho.application.odds_view import OddsView
+from BETinho.domain.odds_service import OddsService
+from BETinho.application.bet_repository_impl import BetRepositoryImpl
+from BETinho.domain.odds_calculator import OddsCalculator
+
+# Manual DI
+
+bet_repository = BetRepositoryImpl()
+odds_calculator = OddsCalculator()
+odds_fetcher = OddsService(bet_repository, odds_calculator)
+odds_view = OddsView.as_view(odds_fetcher=odds_fetcher)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('events/<event_id>/odds', odds_view)
 ]
