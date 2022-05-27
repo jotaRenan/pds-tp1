@@ -1,8 +1,8 @@
-from BETinho.domain.bet_repository import BetRepository
-from BETinho.domain.event_odds import EventOdds
-from BETinho.domain.event_bets_summary import EventBetsSummary
-from BETinho.domain.odds_fetcher import OddsFetcher
-from BETinho.domain.odds_calculator import OddsCalculator
+from BETinho.betinho.domain.bet_repository import BetRepository
+from BETinho.betinho.domain.event_odds import EventOdds
+from BETinho.betinho.domain.event_bets_summary import EventBetsSummary
+from BETinho.betinho.domain.odds_fetcher import OddsFetcher
+from BETinho.betinho.domain.odds_calculator import OddsCalculator
 
 class OddsService(OddsFetcher):
 

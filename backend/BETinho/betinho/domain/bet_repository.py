@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from BETinho.domain.bet import Bet
+from BETinho.betinho.domain.bet import Bet
 
 class BetRepository(ABC):
 

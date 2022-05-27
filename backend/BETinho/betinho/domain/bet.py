@@ -1,6 +1,6 @@
 from cgitb import reset
 from dataclasses import dataclass
-from BETinho.domain.event_result import EventResult
+from BETinho.betinho.domain.event_result import EventResult
 
 
 @dataclass

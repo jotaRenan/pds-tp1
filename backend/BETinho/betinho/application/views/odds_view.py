@@ -3,7 +3,7 @@ import dataclasses
 from django.views import View
 from django.http import JsonResponse
 
-from BETinho.domain.odds_fetcher import OddsFetcher
+from BETinho.betinho.domain.odds_fetcher import OddsFetcher
 
 class OddsView(View):
     odds_fetcher: OddsFetcher = None

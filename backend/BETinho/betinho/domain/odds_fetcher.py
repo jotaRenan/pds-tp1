@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from BETinho.domain.event_odds import EventOdds
+from BETinho.betinho.domain.event_odds import EventOdds
 
 class OddsFetcher(ABC):
 

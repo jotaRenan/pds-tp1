@@ -1,5 +1,5 @@
 from typing import List, Tuple
-from BETinho.domain.bet import Bet
+from BETinho.betinho.domain.bet import Bet
 
 class EventBetsSummary:
     def __init__(self, bets: List[Bet]) -> None:

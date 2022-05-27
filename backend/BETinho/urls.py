@@ -16,10 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from BETinho.application.odds_view import OddsView
-from BETinho.domain.odds_service import OddsService
-from BETinho.application.bet_repository_impl import BetRepositoryImpl
-from BETinho.domain.odds_calculator import OddsCalculator
+from BETinho.betinho.application.views.odds_view import OddsView
+from BETinho.betinho.domain.odds_service import OddsService
+from BETinho.betinho.application.repositories.bet_repository_impl import BetRepositoryImpl
+from BETinho.betinho.domain.odds_calculator import OddsCalculator
+
+from BETinho.betinho.application.models.bet_model import BetModel
+from BETinho.betinho.application.models.event_model import EventModel
+from BETinho.betinho.application.models.team_model import TeamModel
+
+admin.autodiscover()
+admin.site.register(BetModel)
+admin.site.register(EventModel)
+admin.site.register(TeamModel)
 
 # Manual DI
 
