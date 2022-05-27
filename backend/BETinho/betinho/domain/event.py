@@ -3,11 +3,12 @@ from typing import Optional
 from datetime import datetime
 from BETinho.betinho.domain.event_result import EventResult
 from BETinho.betinho.domain.team import Team
+from uuid import UUID
 
 
 @dataclass
 class Event:
-    event_id: str
+    event_id: UUID
     home_team: Team
     away_team: Team
     description: str
