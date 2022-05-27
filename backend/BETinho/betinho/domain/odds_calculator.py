@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from BETinho.betinho.domain.event_bets_summary import EventBetsSummary
 from BETinho.betinho.domain.event_odds import EventOdds
 
@@ -10,15 +12,15 @@ class OddsCalculator:
         draw_probability = self.calculate_probability(bets.total_amount_bet_on_draw(), total_amount)
 
         return EventOdds(
-            home=self.calculate_odd(home_probability),
-            away=self.calculate_odd(away_probability),
-            draw=self.calculate_odd(draw_probability)
+            home=float(self.calculate_odd(home_probability)),
+            away=float(self.calculate_odd(away_probability)),
+            draw=float(self.calculate_odd(draw_probability))
         )
 
-    def calculate_probability(self, amount_bet_on_result, total_bet_amount) -> float:
+    def calculate_probability(self, amount_bet_on_result: Decimal, total_bet_amount: Decimal) -> Decimal:
         return amount_bet_on_result / total_bet_amount
 
-    def calculate_odd(self, probability) -> float:
-        if probability == 0:
+    def calculate_odd(self, probability: Decimal) -> Decimal:
+        if probability == Decimal(0):
             return 0
-        return (100 / probability) / 100
+        return (Decimal(100) / probability) / Decimal(100)

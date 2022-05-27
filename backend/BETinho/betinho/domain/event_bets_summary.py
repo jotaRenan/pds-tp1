@@ -1,4 +1,6 @@
+from decimal import Decimal
 from typing import List, Tuple
+
 from BETinho.betinho.domain.bet import Bet
 
 class EventBetsSummary:
@@ -16,19 +18,19 @@ class EventBetsSummary:
 
         return (home, away, draw)
 
-    def total_bet_amount(self) -> float:
+    def total_bet_amount(self) -> Decimal:
         return self.total_amount_bet_on_home() \
             + self.total_amount_bet_on_away() \
             + self.total_amount_bet_on_draw()
     
-    def total_amount_bet_on_home(self) -> float:
+    def total_amount_bet_on_home(self) -> Decimal:
         return self._total_amount_bet_on_result(self.home)
     
-    def total_amount_bet_on_away(self) -> float:
+    def total_amount_bet_on_away(self) -> Decimal:
         return self._total_amount_bet_on_result(self.away)
     
-    def total_amount_bet_on_draw(self) -> float:
+    def total_amount_bet_on_draw(self) -> Decimal:
         return self._total_amount_bet_on_result(self.draw)
 
-    def _total_amount_bet_on_result(self, result: List[Bet]) -> float:
+    def _total_amount_bet_on_result(self, result: List[Bet]) -> Decimal:
         return sum(map(lambda bet: bet.amount, result))

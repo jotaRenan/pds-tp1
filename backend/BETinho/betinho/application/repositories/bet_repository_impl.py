@@ -1,15 +1,17 @@
 from typing import List
+from uuid import UUID
+
 from BETinho.betinho.domain.bet_repository import BetRepository
 from BETinho.betinho.domain.bet import Bet
+from BETinho.betinho.application.models.bet_model import BetModel
 from BETinho.betinho.domain.event_result import EventResult
 
 class BetRepositoryImpl(BetRepository):
-    def get_bets_by_event_id(self, event_id: str) -> List[Bet]:
+    def get_bets_by_event_id(self, event_id: UUID) -> List[Bet]:
         print(f'Get bets by event id: {event_id}')
 
-        # TODO: implement actual database call using Django's ORM
-        return [
-            Bet(event_id, 8.00, EventResult.HOME_WIN),
-            Bet(event_id, 1.00, EventResult.DRAW),
-            Bet(event_id, 1.00, EventResult.AWAY_WIN),
-        ]
+        bet_models = BetModel.objects.filter(event_id=event_id)
+        
+        return list(
+            map(lambda bet_model: Bet(bet_model.event_id, bet_model.amount, EventResult(bet_model.result)), bet_models)
+        )

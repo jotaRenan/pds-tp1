@@ -1,0 +1,2 @@
+class NoBetsException(Exception):
+    pass

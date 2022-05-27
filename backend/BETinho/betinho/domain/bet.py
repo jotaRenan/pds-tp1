@@ -1,12 +1,13 @@
-from cgitb import reset
 from dataclasses import dataclass
+from decimal import Decimal
+
 from BETinho.betinho.domain.event_result import EventResult
 
 
 @dataclass
 class Bet:
     event_id: str
-    amount: float
+    amount: Decimal
     result: EventResult
     
     # TODO: add other fields as necessary
