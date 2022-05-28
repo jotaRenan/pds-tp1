@@ -1,12 +1,14 @@
 from dataclasses import dataclass
 from decimal import Decimal
+from uuid import UUID
 
 from BETinho.betinho.domain.event_result import EventResult
 
 
 @dataclass
 class Bet:
-    event_id: str
+    id: UUID
+    event_id: UUID
     amount: Decimal
     result: EventResult
     

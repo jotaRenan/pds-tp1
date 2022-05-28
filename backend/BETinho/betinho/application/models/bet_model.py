@@ -16,7 +16,7 @@ class BetModel(models.Model):
 
     def from_bet(bet: Bet):
         bet_model = BetModel()
-        bet_model.id = uuid.uuid4()
+        bet_model.id = bet.id if bet.id is not None else uuid.uuid4()
         bet_model.event_id = bet.event_id
         bet_model.amount = bet.amount
         bet_model.result = bet.result.value
@@ -25,6 +25,7 @@ class BetModel(models.Model):
 
     def to_bet(self) -> Bet:
         return Bet(
+            self.id,
             self.event_id,
             self.amount,
             EventResult(self.result)

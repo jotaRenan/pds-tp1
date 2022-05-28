@@ -8,6 +8,7 @@ from django.http import HttpResponse, JsonResponse
 from BETinho.betinho.domain.bet_maker import BetMaker
 from BETinho.betinho.domain.bet import Bet
 from BETinho.betinho.domain.event_result import EventResult
+from BETinho.betinho.domain.not_found_exception import NotFoundException
 
 class BetView(View):
     bet_maker: BetMaker = None
@@ -32,9 +33,19 @@ class BetView(View):
                 'errors': validation_errors
             }, status=400)
         
-        bet_to_create = Bet(event_id_uuid, body['amount'], EventResult(body['result']))
+        bet_to_create = Bet(
+            id=None,
+            event_id=event_id_uuid,
+            amount=body['amount'],
+            result=EventResult(body['result'])
+        )
 
-        self.bet_maker.create_bet(bet_to_create)
+        try:
+            self.bet_maker.create_bet(bet_to_create)
+        except NotFoundException as e:
+            return JsonResponse({
+                'message': str(e)
+            }, status=400)
 
         return HttpResponse(status=204)
 

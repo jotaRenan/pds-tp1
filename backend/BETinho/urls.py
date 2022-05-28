@@ -48,7 +48,7 @@ event_repository = EventRepositoryImpl()
 event_fetcher = EventService(event_repository)
 event_view = EventView.as_view(event_fetcher=event_fetcher)
 
-bet_maker = BetService(bet_repository)
+bet_maker = BetService(bet_repository=bet_repository, event_repository=event_repository)
 bet_view = BetView.as_view(bet_maker=bet_maker)
 
 urlpatterns = [
