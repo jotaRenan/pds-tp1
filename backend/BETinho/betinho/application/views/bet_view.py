@@ -40,12 +40,12 @@ class BetView(View):
 
     def validate_request_body(self, body) -> List[str]:
         errors = []
-        if body['amount'] is None:
+        if 'amount' not in body:
             errors.append('Bet amount is missing')
         elif not isinstance(body['amount'], float):
             errors.append('Bet amount should be a floating-point number')
         
-        if body['result'] is None:
+        if 'result' not in body:
             errors.append('Bet result is missing')
         elif not isinstance(body['result'], int) or body['result'] not in [1, 2, 3]:
             errors.append('Bet result should be an integer between 1 and 3. 1 = HOME_WIN, 2 = DRAW, 3 = AWAY_WIN')
