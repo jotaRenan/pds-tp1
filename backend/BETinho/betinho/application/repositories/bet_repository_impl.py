@@ -13,5 +13,5 @@ class BetRepositoryImpl(BetRepository):
         bet_models = BetModel.objects.filter(event_id=event_id)
         
         return list(
-            map(lambda bet_model: Bet(bet_model.event_id, bet_model.amount, EventResult(bet_model.result)), bet_models)
+            map(lambda bet_model: bet_model.to_bet(), bet_models)
         )

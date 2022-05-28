@@ -3,9 +3,9 @@ import uuid
 
 from django.views import View
 from django.http import JsonResponse
+from django.core.serializers.json import DjangoJSONEncoder
 
 from BETinho.betinho.domain.odds_fetcher import OddsFetcher
-from BETinho.betinho.domain.no_bets_exception import NoBetsException
 
 class OddsView(View):
     odds_fetcher: OddsFetcher = None
@@ -21,14 +21,12 @@ class OddsView(View):
                 'message': f'Provided event_id {event_id} is not a valid UUID' 
             }, status=400)
 
-        try:
-            odds = self.odds_fetcher.get_odds_for_event(event_id_uuid)
-            print(type(odds.home))
-            json = dataclasses.asdict(odds)
-            print(type(json['home']))
-
-            return JsonResponse(json)
-        except NoBetsException as e:
+    
+        odds = self.odds_fetcher.get_odds_for_event(event_id_uuid)
+        if odds is None:
             return JsonResponse({
-                'message': str(e)
-            }, status=404)
+            'message': f'Event {event_id} has no bets'
+        }, status=404)
+
+        json = dataclasses.asdict(odds)
+        return JsonResponse(json, encoder=DjangoJSONEncoder)

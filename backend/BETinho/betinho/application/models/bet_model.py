@@ -2,6 +2,8 @@ import uuid
 from django.db import models
 
 from BETinho.betinho.application.models.event_result_model import EventResultModel
+from BETinho.betinho.domain.bet import Bet
+from BETinho.betinho.domain.event_result import EventResult
 
 class BetModel(models.Model):
     class Meta:
@@ -11,3 +13,10 @@ class BetModel(models.Model):
     event = models.ForeignKey('EventModel', on_delete=models.CASCADE, related_name='+')
     amount = models.DecimalField(decimal_places=2, max_digits=30)
     result = models.IntegerField(choices=EventResultModel.choices)
+
+    def to_bet(self) -> Bet:
+        return Bet(
+            self.event_id,
+            self.amount,
+            EventResult(self.result)
+        )
