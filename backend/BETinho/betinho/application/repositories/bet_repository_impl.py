@@ -4,7 +4,6 @@ from uuid import UUID
 from BETinho.betinho.domain.bet_repository import BetRepository
 from BETinho.betinho.domain.bet import Bet
 from BETinho.betinho.application.models.bet_model import BetModel
-from BETinho.betinho.domain.event_result import EventResult
 
 class BetRepositoryImpl(BetRepository):
     def get_bets_by_event_id(self, event_id: UUID) -> List[Bet]:
@@ -15,3 +14,6 @@ class BetRepositoryImpl(BetRepository):
         return list(
             map(lambda bet_model: bet_model.to_bet(), bet_models)
         )
+
+    def save(self, bet: Bet) -> None:
+        BetModel.save(BetModel.from_bet(bet))
