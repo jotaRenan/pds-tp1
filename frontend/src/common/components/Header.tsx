@@ -1,10 +1,9 @@
 import { Grid, Typography, Button, Toolbar } from "@mui/material";
 import { Container } from "@mui/system";
-import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <Container>
+    <Container sx={{ height: "10%" }}>
       <Toolbar
         component="nav"
         sx={{

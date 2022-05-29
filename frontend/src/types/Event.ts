@@ -1,7 +1,9 @@
 export default interface Event {
-	id: string;
-	date: Date;
-	name: string;
-	status: boolean;
-	value: number;
+  id: string;
+  description: string;
+  start: string;
+  location: string;
+  result: string;
+  homeTeamId: string;
+  awayTeamId: string;
 }

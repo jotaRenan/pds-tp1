@@ -7,7 +7,10 @@ import { Facebook, Twitter, Instagram, GitHub } from "@mui/icons-material";
 
 export default function Footer() {
   return (
-    <Box component="footer" sx={{ bgcolor: "background.paper", py: 6 }}>
+    <Box
+      component="footer"
+      sx={{ bgcolor: "background.paper", py: 6, height: "30%" }}
+    >
       <Container maxWidth="lg">
         <Grid
           direction="row"

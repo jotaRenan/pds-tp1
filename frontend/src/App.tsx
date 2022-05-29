@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@emotion/react";
-import { createTheme, CssBaseline } from "@mui/material";
+import { createTheme, CssBaseline, Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import Pages from "pages";
 
@@ -9,11 +9,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="lg">
-        <main>
-          <Pages />
-        </main>
-      </Container>
+      <Grid width="100%" height="100vh" display="flex" flexDirection="column">
+        <Pages />
+      </Grid>
     </ThemeProvider>
   );
 }

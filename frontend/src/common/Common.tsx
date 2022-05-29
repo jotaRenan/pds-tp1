@@ -1,3 +1,4 @@
+import { Container } from "@mui/system";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
@@ -9,7 +10,9 @@ export default function Common({ children }: DefaultProps) {
   return (
     <>
       <Header />
-      {children}
+      <Container sx={{ height: "60%" }} maxWidth="lg">
+        {children}
+      </Container>
       <Footer />
     </>
   );
