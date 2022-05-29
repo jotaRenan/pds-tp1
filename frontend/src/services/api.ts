@@ -1,6 +1,7 @@
-// axios ?
-// TODO - add a base url: process.env.BACKEND_URL
+import axios from "axios";
 
-const api = fetch;
+const api = axios.create({
+  baseURL: process.env.REACT_APP_BACKEND_ENDPOINT,
+});
 
 export default api;
