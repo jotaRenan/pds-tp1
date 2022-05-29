@@ -1,8 +1,20 @@
-import AppRoutes from 'pages/routes';
+import { ThemeProvider } from "@emotion/react";
+import { createTheme, CssBaseline } from "@mui/material";
+import { Container } from "@mui/system";
+import Pages from "pages";
+
+const theme = createTheme();
 
 function App() {
   return (
-	<AppRoutes />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <main>
+          <Pages />
+        </main>
+      </Container>
+    </ThemeProvider>
   );
 }
 
