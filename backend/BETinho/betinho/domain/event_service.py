@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from uuid import UUID
 
 from BETinho.betinho.domain.event_repository import EventRepository
@@ -12,3 +12,6 @@ class EventService(EventFetcher):
 
     def get_event(self, event_id: UUID) -> Optional[Event]:
         return self.event_repository.get_event_by_id(event_id)
+
+    def get_event_list(self) -> List[Event]:
+        return self.event_repository.get_event_list()

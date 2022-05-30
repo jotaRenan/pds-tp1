@@ -1,7 +1,7 @@
 from datetime import datetime
 from uuid import UUID
 
-from typing import Optional
+from typing import Optional, List
 
 from BETinho.betinho.domain.event_repository import EventRepository
 from BETinho.betinho.application.models.event_model import EventModel
@@ -16,3 +16,9 @@ class EventRepositoryImpl(EventRepository):
         except EventModel.DoesNotExist:
             return None
         return event.to_event()
+
+    def get_event_list(self) -> List[Event]:
+        print(f'Get events')
+
+        events = EventModel.objects.all()
+        return [e.to_event() for e in events]

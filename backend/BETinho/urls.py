@@ -22,6 +22,7 @@ from BETinho.betinho.application.repositories.bet_repository_impl import BetRepo
 from BETinho.betinho.domain.odds_calculator import OddsCalculator
 
 from BETinho.betinho.application.views.event_view import EventView
+from BETinho.betinho.application.views.event_list_view import EventListView
 from BETinho.betinho.domain.event_service import EventService
 from BETinho.betinho.application.repositories.event_repository_impl import EventRepositoryImpl
 
@@ -47,13 +48,15 @@ odds_view = OddsView.as_view(odds_fetcher=odds_fetcher)
 event_repository = EventRepositoryImpl()
 event_fetcher = EventService(event_repository)
 event_view = EventView.as_view(event_fetcher=event_fetcher)
+event_list_view = EventListView.as_view(event_fetcher=event_fetcher)
 
 bet_maker = BetService(bet_repository=bet_repository, event_repository=event_repository)
 bet_view = BetView.as_view(bet_maker=bet_maker)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('events/<event_id>', event_view),
-    path('events/<event_id>/odds', odds_view),
-    path('events/<event_id>/bets', bet_view)
+    path('events/', event_list_view),
+    path('events/<event_id>/', event_view),
+    path('events/<event_id>/odds/', odds_view),
+    path('events/<event_id>/bets/', bet_view)
 ]
