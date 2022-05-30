@@ -7,16 +7,23 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 import Event from "types/Event";
-import { height } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 interface EventsTableProps {
   events: Event[];
   bet?: boolean;
+  clickable?: boolean;
 }
 
-export default function EventsTable({ events, bet }: EventsTableProps) {
+export default function EventsTable({
+  events,
+  bet,
+  clickable,
+}: EventsTableProps) {
+  const navigate = useNavigate();
+
   return (
-    <TableContainer component={Paper} sx={{ height: "90%" }}>
+    <TableContainer component={Paper} sx={{ maxHeight: "75%" }}>
       <Table sx={{ height: "100%" }}>
         <TableHead>
           <TableRow>
@@ -30,8 +37,13 @@ export default function EventsTable({ events, bet }: EventsTableProps) {
         <TableBody>
           {events.map((event) => (
             <TableRow
+              hover
               key={JSON.stringify(event)}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              sx={{
+                "&:last-child td, &:last-child th": { border: 0 },
+                cursor: "pointer",
+              }}
+              onClick={() => clickable && navigate(`/eventos/${event.id}`)}
             >
               <TableCell component="th" scope="row">
                 {event.home_team.name} x {event.away_team.name}
@@ -41,7 +53,15 @@ export default function EventsTable({ events, bet }: EventsTableProps) {
               <TableCell align="right">{event.result.away}</TableCell>
               {bet && (
                 <TableCell align="right">
-                  <Button variant="contained">Apostar</Button>
+                  <Button
+                    variant="contained"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/apostar/${event.id}`);
+                    }}
+                  >
+                    Apostar
+                  </Button>
                 </TableCell>
               )}
             </TableRow>
@@ -54,4 +74,5 @@ export default function EventsTable({ events, bet }: EventsTableProps) {
 
 EventsTable.defaultProps = {
   bet: false,
+  clickable: false,
 };

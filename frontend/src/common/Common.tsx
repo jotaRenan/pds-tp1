@@ -10,7 +10,15 @@ export default function Common({ children }: DefaultProps) {
   return (
     <>
       <Header />
-      <Container sx={{ height: "60%" }} maxWidth="lg">
+      <Container
+        sx={{
+          height: "80%",
+          maxHeight: "80%",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        maxWidth="lg"
+      >
         {children}
       </Container>
       <Footer />
