@@ -1,6 +1,5 @@
 import { ThemeProvider } from "@emotion/react";
 import { createTheme, CssBaseline, Grid } from "@mui/material";
-import { Container } from "@mui/system";
 import Pages from "pages";
 
 const theme = createTheme();

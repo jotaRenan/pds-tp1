@@ -1,39 +1,44 @@
-import { Grid, Typography, Button, Toolbar } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Button,
+  Toolbar,
+  Link,
+  Divider,
+} from "@mui/material";
 import { Container } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigation = useNavigate();
+
   return (
-    <Container sx={{ height: "10%" }}>
-      <Toolbar
-        component="nav"
-        sx={{
-          borderBottom: 1,
-          borderColor: "divider",
-          overflowX: "auto",
-        }}
-      >
-        <Typography
-          component="h2"
-          variant="h5"
-          color="inherit"
-          align="left"
-          noWrap
-          sx={{ flex: 1 }}
+    <>
+      <Container sx={{ height: "10%" }}>
+        <Toolbar
+          component="nav"
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
         >
-          BETinho
-        </Typography>
-        <Grid>
-          <Button variant="outlined" size="large">
-            Eventos
-          </Button>
-          <Button variant="outlined" size="large">
+          <Link href="/" variant="h4" sx={{ flex: 1 }}>
+            {"BETinho"}
+          </Link>
+          <Button
+            variant="outlined"
+            size="large"
+            onClick={() => navigation("/criar-conta")}
+          >
             Criar Conta
           </Button>
-          <Button variant="outlined" size="large">
+          <Button size="large" onClick={() => navigation("/entrar")}>
             Entrar
           </Button>
-        </Grid>
-      </Toolbar>
-    </Container>
+        </Toolbar>
+      </Container>
+      <Divider variant="fullWidth" />
+    </>
   );
 }

@@ -2,51 +2,26 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import { Grid, Paper, Stack } from "@mui/material";
+import { Divider, Grid, Stack } from "@mui/material";
 import { Facebook, Twitter, Instagram, GitHub } from "@mui/icons-material";
 
 export default function Footer() {
   return (
-    <Box
-      component="footer"
-      sx={{ bgcolor: "background.paper", py: 6, height: "30%" }}
-    >
-      <Container maxWidth="lg">
-        <Grid
-          direction="row"
-          spacing={1}
-          alignItems="center"
-          justifyContent={"center"}
-          container
-        >
-          <Grid item xs={4}>
-            <Paper elevation={0} sx={{ p: 8, bgcolor: "grey.200" }}>
-              <Typography variant="h6" gutterBottom>
-                Texto
-              </Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={4}>
-            <Paper elevation={0} sx={{ p: 8, bgcolor: "grey.200" }}>
-              <Typography variant="h6" gutterBottom>
-                Texto
-              </Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={4}>
-            <Paper elevation={0} sx={{ p: 8, bgcolor: "grey.200" }}>
-              <Typography variant="h6" gutterBottom>
-                Texto
-              </Typography>
-            </Paper>
-          </Grid>
-        </Grid>
+    <>
+      <Divider variant="fullWidth" />
+      <Container
+        sx={{
+          height: "10%",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Stack
-          marginTop={"10px"}
           direction="row"
-          spacing={1}
+          spacing={2}
           alignItems="center"
-          justifyContent={"center"}
+          justifyContent="center"
+          height="100%"
         >
           <Typography
             variant="subtitle1"
@@ -82,6 +57,6 @@ export default function Footer() {
           </Link>
         </Stack>
       </Container>
-    </Box>
+    </>
   );
 }
