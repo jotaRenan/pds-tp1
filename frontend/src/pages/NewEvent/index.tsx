@@ -1,3 +1,3 @@
-import NewEvent from "./NewEvent";
+import NewEventPage from "./NewEvent";
 
-export default NewEvent;
+export default NewEventPage;
