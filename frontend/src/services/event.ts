@@ -3,27 +3,6 @@ import Event from "types/Event";
 import api from "./api";
 import { getOddsFromEvent } from "./odd";
 
-const eventsMock: Event[] = [
-  {
-    event_id: "0036e757dd9c40eebae807f13f8f5236",
-    description: "Jogo de ida das oitavas de final da Copa do Brasil 2022",
-    home_team: { id: "0", name: "Cruzeiro" },
-    away_team: { id: "1", name: "Atlético" },
-    location: "Mineirão",
-    result: { away: 10, draw: 1, home: 1 },
-    start: "?",
-  },
-  {
-    event_id: "0036e757dd9c40eebae807f13f8f5236",
-    description: "Jogo de ida das oitavas de final da Copa do Brasil 2022",
-    home_team: { id: "0", name: "Cruzeiro" },
-    away_team: { id: "1", name: "Atlético" },
-    location: "Mineirão",
-    result: { away: 10, draw: 1, home: 1 },
-    start: "?",
-  },
-];
-
 export async function getEvents() {
   let events: Event[] = [];
 
@@ -33,6 +12,7 @@ export async function getEvents() {
       events = response.data;
     }
   } catch (e) {
+    // TODO: handle error properly
     console.log(e);
   }
 
@@ -42,6 +22,7 @@ export async function getEvents() {
   );
   const results = await Promise.allSettled(promises);
 
+  // TODO: use Array.prototype.map
   results.forEach((result, index) => {
     if (result.status === "fulfilled") {
       events[index].odd = result.value;
@@ -53,18 +34,14 @@ export async function getEvents() {
 }
 
 export async function getEventById(id: string) {
-  let event: Event;
-
   try {
-    const response = await api.get(`/events/${id}/`); // TODO: check
+    const response = await api.get(`/events/${id}/`);
     if (response.status === 200) {
-      event = response.data;
+      return response.data;
     }
   } catch (e) {
+    // TODO: handle error properly
     console.log(e);
   }
 
-  event = eventsMock[0]; // TODO: remove
-
-  return event;
 }

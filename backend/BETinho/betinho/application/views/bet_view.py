@@ -1,3 +1,4 @@
+from decimal import Decimal
 import json
 from typing import List
 import uuid
@@ -36,7 +37,7 @@ class BetView(View):
         bet_to_create = Bet(
             id=None,
             event_id=event_id_uuid,
-            amount=body['amount'],
+            amount=Decimal(str(body['amount'])),
             result=EventResult(body['result'])
         )
 
@@ -53,8 +54,8 @@ class BetView(View):
         errors = []
         if 'amount' not in body:
             errors.append('Bet amount is missing')
-        elif not isinstance(body['amount'], float):
-            errors.append('Bet amount should be a floating-point number')
+        elif not isinstance(body['amount'], float) and not isinstance(body['amount'], int):
+            errors.append('Bet amount should be a number')
         
         if 'result' not in body:
             errors.append('Bet result is missing')

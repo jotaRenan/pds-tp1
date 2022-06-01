@@ -35,8 +35,9 @@ export default function EventsTable({
 
   useEffect(() => {
     fetchEvents();
-  }, []);
+  }, []); // TODO: fix useEffect warning.
 
+  // TODO: delete function if it will not be used.
   function oddValue(value?: number) {
     if (value === undefined) {
       return "-";
