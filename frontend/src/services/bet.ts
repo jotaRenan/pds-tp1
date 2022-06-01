@@ -4,7 +4,7 @@ export async function saveBet(eventId: string, amount: number, result: number) {
   let success = false;
 
   try {
-    const response = await api.post(`/events/${eventId}`, {
+    const response = await api.post(`/events/${eventId}/bets/`, {
       amount,
       result,
     });
