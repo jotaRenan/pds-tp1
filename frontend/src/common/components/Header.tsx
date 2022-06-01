@@ -1,44 +1,47 @@
-import {
-  Grid,
-  Typography,
-  Button,
-  Toolbar,
-  Link,
-  Divider,
-} from "@mui/material";
-import { Container } from "@mui/system";
+import { Button, Toolbar, Link, Divider, Grid } from "@mui/material";
+import { Box, Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
+
+import logo from "assets/logo.png";
 
 export default function Header() {
   const navigation = useNavigate();
 
   return (
-    <>
-      <Container sx={{ height: "10%" }}>
-        <Toolbar
-          component="nav"
-          sx={{
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%",
-          }}
-        >
-          <Link href="/" variant="h4" sx={{ flex: 1 }}>
+    <Container sx={{ height: "10%", marginTop: "10px" }}>
+      <Box sx={{ display: "flex" }}>
+        <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
+          <img
+            src={logo}
+            alt="BETinho"
+            style={{ width: "5%", minWidth: "40px" }}
+          />
+          <Link href="/" variant="h4" sx={{ marginLeft: "10px" }}>
             {"BETinho"}
           </Link>
-          <Button
-            variant="outlined"
-            size="large"
-            onClick={() => navigation("/criar-conta")}
-          >
-            Criar Conta
-          </Button>
-          <Button size="large" onClick={() => navigation("/entrar")}>
-            Entrar
-          </Button>
-        </Toolbar>
-      </Container>
+        </Box>
+        <Box sx={{ flexShrink: 1, display: "flex" }}>
+          <Box sx={{height: "50%"}}>
+            <Button
+              variant="outlined"
+              size="medium"
+              onClick={() => navigation("/criar-conta")}
+            >
+              Criar Conta
+            </Button>
+          </Box>
+          <Box>
+            <Button
+              sx={{ order: 1 }}
+              size="medium"
+              onClick={() => navigation("/entrar")}
+            >
+              Entrar
+            </Button>
+          </Box>
+        </Box>
+      </Box>
       <Divider variant="fullWidth" />
-    </>
+    </Container>
   );
 }

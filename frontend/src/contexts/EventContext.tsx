@@ -13,7 +13,8 @@ export default function EventsProvider({ children }: { children: ReactNode }) {
   const [events, setEvents] = useState<Event[]>([]);
 
   async function fetchEvents() {
-    setEvents(await getEvents());
+	  const events = await getEvents();
+	  setEvents(events);
   }
 
   return (

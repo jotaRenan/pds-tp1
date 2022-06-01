@@ -1,8 +1,17 @@
-import { Button, Grid, MenuItem, Select, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import Common from "common";
 import EventsTable from "common/components/EventsTable";
 import PageTitle from "common/components/PageTitle";
 import PleaseWait from "common/components/PleaseWait";
+import { useAlert } from "hooks/useAlert";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { saveBet } from "services/bet";
@@ -17,10 +26,12 @@ interface EventDetailsProps {
 export default function EventDetails({ bet }: EventDetailsProps) {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { showAlert } = useAlert();
 
   const [event, setEvent] = useState<Event>();
-  const [result, setResult] = useState("0");
+  const [result, setResult] = useState("");
   const [amount, setAmount] = useState("");
+  const [requesting, setRequesting] = useState(false);
 
   useEffect(() => {
     async function fetchEvent() {
@@ -28,11 +39,13 @@ export default function EventDetails({ bet }: EventDetailsProps) {
         navigate("/404");
         return;
       }
+      setRequesting(true);
       const event = await getEventById(id);
       if (!event) {
         navigate("/404");
         return;
       }
+      setRequesting(false);
       setEvent(event);
     }
     fetchEvent();
@@ -45,12 +58,32 @@ export default function EventDetails({ bet }: EventDetailsProps) {
   }, [bet, event]);
 
   async function onClickSaveBet() {
-    if (event && event.id && result && amount) {
-      const success = await saveBet(event.id, Number(amount), Number(amount));
+    if (event && event.event_id && result && amount) {
+      setRequesting(true);
+      const success = await saveBet(
+        event.event_id,
+        Number(amount),
+        Number(result)
+      );
+      setRequesting(false);
       if (success) {
         navigate("/");
+        showAlert({
+          type: "success",
+          message: "Aposta realizada com sucesso!",
+        });
+      } else {
+        showAlert({
+          type: "error",
+          message:
+            "Ocorreu um erro ao salvar a aposta. Por favor, tente novamente.",
+        });
       }
-      navigate("/"); // TODO: remover
+    } else {
+      showAlert({
+        type: "warning",
+        message: "Preencha todos os campos para realizar a aposta!",
+      });
     }
   }
 
@@ -79,24 +112,26 @@ export default function EventDetails({ bet }: EventDetailsProps) {
             </Grid>
             <Grid item xs={12}>
               <EventTitle
-                label="ODDS (mandante, empate e visitante)"
+                label="ODDs (mandante, empate e visitante)"
                 value=""
               />
             </Grid>
-            <EventsTable events={[event]} />
+            <EventsTable eventId={id} />
             {bet && (
               <Grid sx={{ marginTop: "20px" }} container>
                 <Grid item xs={6}>
-                  <Select
+                  <TextField
+                    id="result"
                     fullWidth
                     value={result}
-                    label="dasdas"
                     onChange={(e) => setResult(e.target.value)}
+                    select
+                    label="Palpite"
                   >
                     <MenuItem value="1">Vitória do Mandante</MenuItem>
                     <MenuItem value="2">Empate</MenuItem>
                     <MenuItem value="3">Vitória do Visitante</MenuItem>
-                  </Select>
+                  </TextField>
                 </Grid>
                 <Grid item xs={6}>
                   <TextField
@@ -113,6 +148,7 @@ export default function EventDetails({ bet }: EventDetailsProps) {
                     variant="contained"
                     size="large"
                     onClick={onClickSaveBet}
+                    disabled={requesting}
                   >
                     Betar!
                   </Button>

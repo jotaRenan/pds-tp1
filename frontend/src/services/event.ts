@@ -1,10 +1,11 @@
 import Event from "types/Event";
 
 import api from "./api";
+import { getOddsFromEvent } from "./odd";
 
 const eventsMock: Event[] = [
   {
-    id: "0036e757dd9c40eebae807f13f8f5236",
+    event_id: "0036e757dd9c40eebae807f13f8f5236",
     description: "Jogo de ida das oitavas de final da Copa do Brasil 2022",
     home_team: { id: "0", name: "Cruzeiro" },
     away_team: { id: "1", name: "Atlético" },
@@ -13,61 +14,7 @@ const eventsMock: Event[] = [
     start: "?",
   },
   {
-    id: "0036e757dd9c40eebae807f13f8f5236",
-    description: "Jogo de ida das oitavas de final da Copa do Brasil 2022",
-    home_team: { id: "0", name: "Cruzeiro" },
-    away_team: { id: "1", name: "Atlético" },
-    location: "Mineirão",
-    result: { away: 10, draw: 1, home: 1 },
-    start: "?",
-  },
-  {
-    id: "0036e757dd9c40eebae807f13f8f5236",
-    description: "Jogo de ida das oitavas de final da Copa do Brasil 2022",
-    home_team: { id: "0", name: "Cruzeiro" },
-    away_team: { id: "1", name: "Atlético" },
-    location: "Mineirão",
-    result: { away: 10, draw: 1, home: 1 },
-    start: "?",
-  },
-  {
-    id: "0036e757dd9c40eebae807f13f8f5236",
-    description: "Jogo de ida das oitavas de final da Copa do Brasil 2022",
-    home_team: { id: "0", name: "Cruzeiro" },
-    away_team: { id: "1", name: "Atlético" },
-    location: "Mineirão",
-    result: { away: 10, draw: 1, home: 1 },
-    start: "?",
-  },
-  {
-    id: "0036e757dd9c40eebae807f13f8f5236",
-    description: "Jogo de ida das oitavas de final da Copa do Brasil 2022",
-    home_team: { id: "0", name: "Cruzeiro" },
-    away_team: { id: "1", name: "Atlético" },
-    location: "Mineirão",
-    result: { away: 10, draw: 1, home: 1 },
-    start: "?",
-  },
-  {
-    id: "0036e757dd9c40eebae807f13f8f5236",
-    description: "Jogo de ida das oitavas de final da Copa do Brasil 2022",
-    home_team: { id: "0", name: "Cruzeiro" },
-    away_team: { id: "1", name: "Atlético" },
-    location: "Mineirão",
-    result: { away: 10, draw: 1, home: 1 },
-    start: "?",
-  },
-  {
-    id: "0036e757dd9c40eebae807f13f8f5236",
-    description: "Jogo de ida das oitavas de final da Copa do Brasil 2022",
-    home_team: { id: "0", name: "Cruzeiro" },
-    away_team: { id: "1", name: "Atlético" },
-    location: "Mineirão",
-    result: { away: 10, draw: 1, home: 1 },
-    start: "?",
-  },
-  {
-    id: "0036e757dd9c40eebae807f13f8f5236",
+    event_id: "0036e757dd9c40eebae807f13f8f5236",
     description: "Jogo de ida das oitavas de final da Copa do Brasil 2022",
     home_team: { id: "0", name: "Cruzeiro" },
     away_team: { id: "1", name: "Atlético" },
@@ -89,7 +36,18 @@ export async function getEvents() {
     console.log(e);
   }
 
-  events = eventsMock; // TODO: remove
+  // Código deselegante
+  const promises = events.map(
+    async (event) => await getOddsFromEvent(event.event_id)
+  );
+  const results = await Promise.allSettled(promises);
+
+  results.forEach((result, index) => {
+    if (result.status === "fulfilled") {
+      events[index].odd = result.value;
+    }
+  });
+  // Código deselegante
 
   return events;
 }
