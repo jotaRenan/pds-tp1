@@ -81,7 +81,7 @@ export async function getEvents() {
   let events: Event[] = [];
 
   try {
-    const response = await api.get("/getEvents"); // TODO: check
+    const response = await api.get("/events");
     if (response.status === 200) {
       events = response.data;
     }
@@ -98,7 +98,7 @@ export async function getEventById(id: string) {
   let event: Event;
 
   try {
-    const response = await api.get(`/getEvents/${id}`); // TODO: check
+    const response = await api.get(`/events/${id}`); // TODO: check
     if (response.status === 200) {
       event = response.data;
     }
