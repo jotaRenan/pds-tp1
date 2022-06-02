@@ -1,8 +1,7 @@
-import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import { Divider, Grid, Stack } from "@mui/material";
+import { Divider, Stack } from "@mui/material";
 import { Facebook, Twitter, Instagram, GitHub } from "@mui/icons-material";
 
 export default function Footer() {
