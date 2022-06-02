@@ -9,17 +9,17 @@ from uuid import UUID
 @dataclass
 class Event:
     event_id: UUID
-    home_team_id: UUID
-    away_team_id: UUID
+    home_team: Team
+    away_team: Team
     description: str
     start: datetime
     location: str
     result: Optional[EventResult]
 
-    def __init__(self, event_id, home_team_id, away_team_id, description, start, location, result=None):
+    def __init__(self, event_id: UUID, home_team: Team, away_team: Team, description: str, start: datetime, location: str, result: Optional[EventResult]=None):
         self.event_id = event_id
-        self.home_team_id = home_team_id
-        self.away_team_id = away_team_id
+        self.home_team = home_team
+        self.away_team = away_team
         self.description = description
         self.start = start
         self.location = location

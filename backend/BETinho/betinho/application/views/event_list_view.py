@@ -1,11 +1,10 @@
 import dataclasses
 
 from django.views import View
-from django.http import JsonResponse, Http404
+from django.http import JsonResponse, HttpResponse
 from django.core.serializers.json import DjangoJSONEncoder
 
 from BETinho.betinho.domain.event_fetching_service import EventFetchingService
-
 
 class EventListView(View):
     event_fetcher: EventFetchingService = None

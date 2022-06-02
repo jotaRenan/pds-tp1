@@ -22,8 +22,8 @@ class EventModel(models.Model):
         id = event.event_id if event.event_id else uuid.uuid4()
         event_model = cls(
             id=id,
-            home_team_id=event.home_team_id, 
-            away_team_id=event.away_team_id, 
+            home_team_id=event.home_team.id, 
+            away_team_id=event.away_team.id, 
             description=event.description, 
             start=event.start, 
             location=event.location
@@ -34,8 +34,8 @@ class EventModel(models.Model):
     def to_event(self) -> Event:
         return Event(
             event_id = self.id,
-            home_team_id = self.home_team_id,
-            away_team_id = self.away_team_id,
+            home_team = TeamModel.to_team(self.home_team),
+            away_team = TeamModel.to_team(self.away_team),
             description = self.description,
             start = self.start,
             location = self.location,

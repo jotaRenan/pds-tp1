@@ -18,6 +18,8 @@ class EventRegistrationView(View):
     def post(self, _request):
         body = json.loads(_request.body)
 
+        print(body)
+
         validation_errors = self.validate_request_body(body)
 
         if len(validation_errors) > 0:
