@@ -24,11 +24,15 @@ export default function BetCell({ value }: BetCellProps) {
     return value.toFixed(2);
   }
 
-  return tooltipMessage ? (
-    <Tooltip title={tooltipMessage} placement="top-end">
-      <TableCell align="right">{oddValue(value)}</TableCell>
-    </Tooltip>
-  ) : (
-    <TableCell align="right">{oddValue(value)}</TableCell>
+  return (
+    <TableCell align="right">
+      {tooltipMessage ? (
+        <Tooltip title={tooltipMessage} placement="top">
+          <span>{oddValue(value)}</span>
+        </Tooltip>
+      ) : (
+        <span>{oddValue(value)}</span>
+      )}
+    </TableCell>
   );
 }

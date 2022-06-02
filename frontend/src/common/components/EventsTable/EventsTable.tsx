@@ -67,7 +67,7 @@ export default function EventsTable({
               key={JSON.stringify(event)}
               sx={{
                 "&:last-child td, &:last-child th": { border: 0 },
-                cursor: "pointer",
+                cursor: clickable ? "pointer" : "default",
               }}
               onClick={() =>
                 clickable && navigate(`/eventos/${event.event_id}`)
