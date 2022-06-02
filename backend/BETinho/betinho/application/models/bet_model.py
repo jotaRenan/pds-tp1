@@ -14,12 +14,15 @@ class BetModel(models.Model):
     amount = models.DecimalField(decimal_places=2, max_digits=30)
     result = models.IntegerField(choices=EventResultModel.choices)
 
-    def from_bet(bet: Bet):
-        bet_model = BetModel()
-        bet_model.id = bet.id if bet.id is not None else uuid.uuid4()
-        bet_model.event_id = bet.event_id
-        bet_model.amount = bet.amount
-        bet_model.result = bet.result.value
+    @classmethod
+    def from_bet(cls, bet: Bet):
+        id = bet.id if bet.id else uuid.uuid4()
+        bet_model = cls(
+            id=id,
+            event_id=bet.event_id, 
+            amount=bet.amount, 
+            result=bet.result.value
+        )
 
         return bet_model
 

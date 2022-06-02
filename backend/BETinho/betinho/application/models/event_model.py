@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 
 from BETinho.betinho.application.models.event_result_model import EventResultModel
+from BETinho.betinho.application.models.team_model import TeamModel
 from BETinho.betinho.domain.event import Event
 
 class EventModel(models.Model):
@@ -16,11 +17,25 @@ class EventModel(models.Model):
     location = models.TextField()
     result = models.IntegerField(choices=EventResultModel.choices, null=True)
 
+    @classmethod
+    def from_event(cls, event: Event):
+        id = event.event_id if event.event_id else uuid.uuid4()
+        event_model = cls(
+            id=id,
+            home_team_id=event.home_team_id, 
+            away_team_id=event.away_team_id, 
+            description=event.description, 
+            start=event.start, 
+            location=event.location
+        )
+
+        return event_model
+
     def to_event(self) -> Event:
         return Event(
-            event_id = str(self.id),
-            home_team = self.home_team.to_team(),
-            away_team = self.away_team.to_team(),
+            event_id = self.id,
+            home_team_id = self.home_team_id,
+            away_team_id = self.away_team_id,
             description = self.description,
             start = self.start,
             location = self.location,

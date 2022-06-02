@@ -4,7 +4,7 @@ from uuid import UUID
 
 from BETinho.betinho.domain.event_odds import EventOdds
 
-class OddsFetcher(ABC):
+class OddsFetchingService(ABC):
 
     @abstractmethod
     def get_odds_for_event(self, event_id: UUID) -> Optional[EventOdds]:

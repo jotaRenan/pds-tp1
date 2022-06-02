@@ -1,4 +1,3 @@
-from datetime import datetime
 from uuid import UUID
 
 from typing import Optional, List
@@ -22,3 +21,6 @@ class EventRepositoryImpl(EventRepository):
 
         events = EventModel.objects.all()
         return [e.to_event() for e in events]
+
+    def save(self, event: Event) -> None:
+        EventModel.from_event(event).save()

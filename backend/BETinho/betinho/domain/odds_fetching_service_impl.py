@@ -4,10 +4,10 @@ from uuid import UUID
 from BETinho.betinho.domain.bet_repository import BetRepository
 from BETinho.betinho.domain.event_odds import EventOdds
 from BETinho.betinho.domain.event_bets_summary import EventBetsSummary
-from BETinho.betinho.domain.odds_fetcher import OddsFetcher
+from BETinho.betinho.domain.odds_fetching_service import OddsFetchingService
 from BETinho.betinho.domain.odds_calculator import OddsCalculator
 
-class OddsService(OddsFetcher):
+class OddsFetchingServiceImpl(OddsFetchingService):
 
     def __init__(self, bet_repository: BetRepository, odds_calculator: OddsCalculator) -> None:
         self.bet_repository = bet_repository

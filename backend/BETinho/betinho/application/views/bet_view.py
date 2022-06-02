@@ -6,15 +6,15 @@ import uuid
 from django.views import View
 from django.http import HttpResponse, JsonResponse
 
-from BETinho.betinho.domain.bet_maker import BetMaker
+from BETinho.betinho.domain.bet_service import BetRegistrationService
 from BETinho.betinho.domain.bet import Bet
 from BETinho.betinho.domain.event_result import EventResult
 from BETinho.betinho.domain.not_found_exception import NotFoundException
 
 class BetView(View):
-    bet_maker: BetMaker = None
+    bet_maker: BetRegistrationService = None
 
-    def __init__(self, bet_maker: BetMaker) -> None:
+    def __init__(self, bet_maker: BetRegistrationService) -> None:
         self.bet_maker = bet_maker
 
     def post(self, request, event_id: str):

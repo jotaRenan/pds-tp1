@@ -17,17 +17,23 @@ from django.contrib import admin
 from django.urls import path
 
 from BETinho.betinho.application.views.odds_view import OddsView
-from BETinho.betinho.domain.odds_service import OddsService
+from BETinho.betinho.domain.odds_fetching_service_impl import OddsFetchingServiceImpl
 from BETinho.betinho.application.repositories.bet_repository_impl import BetRepositoryImpl
 from BETinho.betinho.domain.odds_calculator import OddsCalculator
 
 from BETinho.betinho.application.views.event_view import EventView
 from BETinho.betinho.application.views.event_list_view import EventListView
-from BETinho.betinho.domain.event_service import EventService
+from BETinho.betinho.application.views.event_registration_view import EventRegistrationView
+from BETinho.betinho.domain.event_fetching_service_impl import EventFetchingServiceImpl
+from BETinho.betinho.domain.event_registration_service_impl import EventRegistrationServiceImpl
 from BETinho.betinho.application.repositories.event_repository_impl import EventRepositoryImpl
 
+
+from BETinho.betinho.application.repositories.team_repository_impl import TeamRepositoryImpl
+
+
 from BETinho.betinho.application.views.bet_view import BetView
-from BETinho.betinho.domain.bet_service import BetService
+from BETinho.betinho.domain.bet_service_impl import BetRegistrationServiceImpl
 
 from BETinho.betinho.application.models.bet_model import BetModel
 from BETinho.betinho.application.models.event_model import EventModel
@@ -42,20 +48,25 @@ admin.autodiscover()
 
 bet_repository = BetRepositoryImpl()
 odds_calculator = OddsCalculator()
-odds_fetcher = OddsService(bet_repository, odds_calculator)
+odds_fetcher = OddsFetchingServiceImpl(bet_repository, odds_calculator)
 odds_view = OddsView.as_view(odds_fetcher=odds_fetcher)
 
 event_repository = EventRepositoryImpl()
-event_fetcher = EventService(event_repository)
+event_fetcher = EventFetchingServiceImpl(event_repository)
 event_view = EventView.as_view(event_fetcher=event_fetcher)
 event_list_view = EventListView.as_view(event_fetcher=event_fetcher)
 
-bet_maker = BetService(bet_repository=bet_repository, event_repository=event_repository)
-bet_view = BetView.as_view(bet_maker=bet_maker)
+team_repository = TeamRepositoryImpl()
+event_maker = EventRegistrationServiceImpl(event_repository=event_repository, team_repository=team_repository)
+event_registration_view = EventRegistrationView.as_view(event_maker=event_maker)
+
+bet_registration_service = BetRegistrationServiceImpl(bet_repository=bet_repository, event_repository=event_repository)
+bet_view = BetView.as_view(bet_maker=bet_registration_service)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('events/', event_list_view),
+    path('events/register/', event_registration_view),
     path('events/<event_id>/', event_view),
     path('events/<event_id>/odds/', odds_view),
     path('events/<event_id>/bets/', bet_view)

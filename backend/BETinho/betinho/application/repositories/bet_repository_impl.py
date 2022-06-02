@@ -16,4 +16,4 @@ class BetRepositoryImpl(BetRepository):
         )
 
     def save(self, bet: Bet) -> None:
-        BetModel.save(BetModel.from_bet(bet))
+        BetModel.from_bet(bet).save()

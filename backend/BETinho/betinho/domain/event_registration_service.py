@@ -4,12 +4,8 @@ from uuid import UUID
 
 from BETinho.betinho.domain.event import Event
 
-class EventFetcher(ABC):
+class EventRegistrationService(ABC):
 
     @abstractmethod
-    def get_event(self, event_id: UUID) -> Optional[Event]:
-        pass
-
-    @abstractmethod
-    def get_event_list(self) -> List[Event]:
+    def create_event(self, event: Event) -> None:
         pass
