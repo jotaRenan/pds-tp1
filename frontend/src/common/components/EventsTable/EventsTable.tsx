@@ -6,7 +6,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
-import Event from "types/Event";
 import { useNavigate } from "react-router-dom";
 import { useEvent } from "hooks/useEvent";
 import { useEffect, useMemo } from "react";
@@ -37,17 +36,6 @@ export default function EventsTable({
     fetchEvents();
   }, []); // TODO: fix useEffect warning.
 
-  // TODO: delete function if it will not be used.
-  function oddValue(value?: number) {
-    if (value === undefined) {
-      return "-";
-    }
-    if (value === 0) {
-      return "N/A";
-    }
-    return value.toFixed(2);
-  }
-
   return (
     <TableContainer component={Paper} sx={{ maxHeight: "75%" }}>
       <Table sx={{ height: "100%" }}>
@@ -67,7 +55,7 @@ export default function EventsTable({
               key={JSON.stringify(event)}
               sx={{
                 "&:last-child td, &:last-child th": { border: 0 },
-                cursor: "pointer",
+                cursor: clickable ? "pointer" : "default",
               }}
               onClick={() =>
                 clickable && navigate(`/eventos/${event.event_id}`)

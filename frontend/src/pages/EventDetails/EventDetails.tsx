@@ -1,10 +1,8 @@
 import {
   Button,
-  FormControl,
   Grid,
-  InputLabel,
+  InputAdornment,
   MenuItem,
-  Select,
   TextField,
 } from "@mui/material";
 import Common from "common";
@@ -101,7 +99,16 @@ export default function EventDetails({ bet }: EventDetailsProps) {
                 <EventTitle label="Local" value={event.location} />
               </Grid>
               <Grid item xs={6}>
-                <EventTitle label="Início" value={event.start} />
+                <EventTitle
+                  label="Início"
+                  value={new Date(event.start).toLocaleString("pt-BR", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                />
               </Grid>
               <Grid item xs={6}>
                 <EventTitle label="Mandante" value={event.home_team.name} />
@@ -137,6 +144,18 @@ export default function EventDetails({ bet }: EventDetailsProps) {
                   <TextField
                     label="Valor da Aposta"
                     type="number"
+                    inputProps={{
+                      step: "0.01",
+                      min: "0.01",
+                      lang: "pt-BR",
+                    }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <span>R$</span>
+                        </InputAdornment>
+                      ),
+                    }}
                     fullWidth
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
