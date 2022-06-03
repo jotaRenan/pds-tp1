@@ -1,11 +1,11 @@
 from typing import Optional
 from uuid import UUID
 
-from BETinho.betinho.domain.bet_repository import BetRepository
-from BETinho.betinho.domain.event_odds import EventOdds
-from BETinho.betinho.domain.event_bets_summary import EventBetsSummary
-from BETinho.betinho.domain.odds_fetching_service import OddsFetchingService
-from BETinho.betinho.domain.odds_calculator import OddsCalculator
+from BETinho.betinho.domain.event.bet.bet_repository import BetRepository
+from BETinho.betinho.domain.event.event_odds import EventOdds
+from BETinho.betinho.domain.event.event_bets_summary import EventBetsSummary
+from BETinho.betinho.domain.event.odds.odds_fetching_service import OddsFetchingService
+from BETinho.betinho.domain.event.odds.odds_calculator import OddsCalculator
 
 class OddsFetchingServiceImpl(OddsFetchingService):
 

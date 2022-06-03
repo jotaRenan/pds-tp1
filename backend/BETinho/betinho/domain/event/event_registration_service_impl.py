@@ -1,9 +1,9 @@
-from BETinho.betinho.domain.event_repository import EventRepository
-from BETinho.betinho.domain.team_repository import TeamRepository
-from BETinho.betinho.domain.event_registration_service import EventRegistrationService
-from BETinho.betinho.domain.event import Event
-from BETinho.betinho.domain.event_request import EventRequest
-from BETinho.betinho.domain.team import Team
+from BETinho.betinho.domain.event.event_repository import EventRepository
+from BETinho.betinho.domain.team.team_repository import TeamRepository
+from BETinho.betinho.domain.event.event_registration_service import EventRegistrationService
+from BETinho.betinho.domain.event.event import Event
+from BETinho.betinho.domain.event.event_request import EventRequest
+from BETinho.betinho.domain.team.team import Team
 
 class EventRegistrationServiceImpl(EventRegistrationService):
 
@@ -24,8 +24,8 @@ class EventRegistrationServiceImpl(EventRegistrationService):
 
         event = Event(
             event_id = None,
-            home_team_id = home_team.team_id,
-            away_team_id = away_team.team_id,
+            home_team = home_team,
+            away_team = away_team,
             description = event_request.description,
             start = event_request.start,
             location = event_request.location,

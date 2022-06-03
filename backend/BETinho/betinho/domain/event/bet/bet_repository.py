@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List
 from uuid import UUID
 
-from BETinho.betinho.domain.bet import Bet
+from BETinho.betinho.domain.event.bet.bet import Bet
 
 class BetRepository(ABC):
 

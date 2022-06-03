@@ -3,7 +3,7 @@ from django.db import models
 
 from BETinho.betinho.application.models.event_result_model import EventResultModel
 from BETinho.betinho.application.models.team_model import TeamModel
-from BETinho.betinho.domain.event import Event
+from BETinho.betinho.domain.event.event import Event
 
 class EventModel(models.Model):
     class Meta:
@@ -22,8 +22,8 @@ class EventModel(models.Model):
         id = event.event_id if event.event_id else uuid.uuid4()
         event_model = cls(
             id=id,
-            home_team_id=event.home_team.id, 
-            away_team_id=event.away_team.id, 
+            home_team_id=event.home_team.team_id, 
+            away_team_id=event.away_team.team_id, 
             description=event.description, 
             start=event.start, 
             location=event.location

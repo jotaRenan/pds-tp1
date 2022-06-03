@@ -1,5 +1,5 @@
-from BETinho.betinho.domain.team_repository import TeamRepository
-from BETinho.betinho.domain.team import Team
+from BETinho.betinho.domain.team.team_repository import TeamRepository
+from BETinho.betinho.domain.team.team import Team
 from BETinho.betinho.application.models.team_model import TeamModel
 
 class TeamRepositoryImpl(TeamRepository):

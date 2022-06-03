@@ -1,7 +1,7 @@
 from decimal import Decimal
 
-from BETinho.betinho.domain.event_bets_summary import EventBetsSummary
-from BETinho.betinho.domain.event_odds import EventOdds
+from BETinho.betinho.domain.event.event_bets_summary import EventBetsSummary
+from BETinho.betinho.domain.event.event_odds import EventOdds
 
 class OddsCalculator:
     def calculate_odds(self, bets: EventBetsSummary) -> EventOdds:

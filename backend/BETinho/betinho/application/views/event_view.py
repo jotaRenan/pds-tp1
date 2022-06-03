@@ -5,7 +5,7 @@ from django.views import View
 from django.http import JsonResponse, Http404
 from django.core.serializers.json import DjangoJSONEncoder
 
-from BETinho.betinho.domain.event_fetching_service import EventFetchingService
+from BETinho.betinho.domain.event.event_fetching_service import EventFetchingService
 
 
 class EventView(View):

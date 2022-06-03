@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-from BETinho.betinho.domain.team import Team
+from BETinho.betinho.domain.team.team import Team
 
 class TeamModel(models.Model):
     class Meta:

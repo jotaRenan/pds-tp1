@@ -1,9 +1,7 @@
-import uuid
-
-from BETinho.betinho.domain.bet_service import BetRegistrationService
-from BETinho.betinho.domain.bet_repository import BetRepository
-from BETinho.betinho.domain.bet import Bet
-from BETinho.betinho.domain.event_repository import EventRepository
+from BETinho.betinho.domain.event.bet.bet_service import BetRegistrationService
+from BETinho.betinho.domain.event.bet.bet_repository import BetRepository
+from BETinho.betinho.domain.event.bet.bet import Bet
+from BETinho.betinho.domain.event.event_repository import EventRepository
 from BETinho.betinho.domain.not_found_exception import NotFoundException
 
 class BetRegistrationServiceImpl(BetRegistrationService):

@@ -2,9 +2,9 @@ from uuid import UUID
 
 from typing import Optional, List
 
-from BETinho.betinho.domain.event_repository import EventRepository
+from BETinho.betinho.domain.event.event_repository import EventRepository
 from BETinho.betinho.application.models.event_model import EventModel
-from BETinho.betinho.domain.event import Event
+from BETinho.betinho.domain.event.event import Event
 
 class EventRepositoryImpl(EventRepository):
     def get_event_by_id(self, event_id: UUID) -> Optional[Event]:
@@ -23,4 +23,6 @@ class EventRepositoryImpl(EventRepository):
         return [e.to_event() for e in events]
 
     def save(self, event: Event) -> None:
+        print(event.home_team)
+        print(event.away_team)
         EventModel.from_event(event).save()

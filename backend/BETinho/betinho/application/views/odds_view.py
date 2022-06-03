@@ -5,7 +5,7 @@ from django.views import View
 from django.http import JsonResponse
 from django.core.serializers.json import DjangoJSONEncoder
 
-from BETinho.betinho.domain.odds_fetching_service import OddsFetchingService
+from BETinho.betinho.domain.event.odds.odds_fetching_service import OddsFetchingService
 
 class OddsView(View):
     odds_fetcher: OddsFetchingService = None

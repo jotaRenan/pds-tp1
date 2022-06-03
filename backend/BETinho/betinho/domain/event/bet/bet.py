@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from uuid import UUID
 
-from BETinho.betinho.domain.event_result import EventResult
+from BETinho.betinho.domain.event.event_result import EventResult
 
 
 @dataclass

@@ -1,7 +1,7 @@
 from decimal import Decimal
 from typing import List, Tuple
 
-from BETinho.betinho.domain.bet import Bet
+from BETinho.betinho.domain.event.bet.bet import Bet
 
 class EventBetsSummary:
     def __init__(self, bets: List[Bet]) -> None:

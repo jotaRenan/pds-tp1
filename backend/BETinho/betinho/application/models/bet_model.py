@@ -2,8 +2,8 @@ import uuid
 from django.db import models
 
 from BETinho.betinho.application.models.event_result_model import EventResultModel
-from BETinho.betinho.domain.bet import Bet
-from BETinho.betinho.domain.event_result import EventResult
+from BETinho.betinho.domain.event.bet.bet import Bet
+from BETinho.betinho.domain.event.event_result import EventResult
 
 class BetModel(models.Model):
     class Meta:

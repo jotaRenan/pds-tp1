@@ -17,15 +17,15 @@ from django.contrib import admin
 from django.urls import path
 
 from BETinho.betinho.application.views.odds_view import OddsView
-from BETinho.betinho.domain.odds_fetching_service_impl import OddsFetchingServiceImpl
+from BETinho.betinho.domain.event.odds.odds_fetching_service_impl import OddsFetchingServiceImpl
 from BETinho.betinho.application.repositories.bet_repository_impl import BetRepositoryImpl
-from BETinho.betinho.domain.odds_calculator import OddsCalculator
+from BETinho.betinho.domain.event.odds.odds_calculator import OddsCalculator
 
 from BETinho.betinho.application.views.event_view import EventView
 from BETinho.betinho.application.views.event_list_view import EventListView
 from BETinho.betinho.application.views.event_registration_view import EventRegistrationView
-from BETinho.betinho.domain.event_fetching_service_impl import EventFetchingServiceImpl
-from BETinho.betinho.domain.event_registration_service_impl import EventRegistrationServiceImpl
+from BETinho.betinho.domain.event.event_fetching_service_impl import EventFetchingServiceImpl
+from BETinho.betinho.domain.event.event_registration_service_impl import EventRegistrationServiceImpl
 from BETinho.betinho.application.repositories.event_repository_impl import EventRepositoryImpl
 
 
@@ -33,11 +33,7 @@ from BETinho.betinho.application.repositories.team_repository_impl import TeamRe
 
 
 from BETinho.betinho.application.views.bet_view import BetView
-from BETinho.betinho.domain.bet_service_impl import BetRegistrationServiceImpl
-
-from BETinho.betinho.application.models.bet_model import BetModel
-from BETinho.betinho.application.models.event_model import EventModel
-from BETinho.betinho.application.models.team_model import TeamModel
+from BETinho.betinho.domain.event.bet.bet_service_impl import BetRegistrationServiceImpl
 
 admin.autodiscover()
 # admin.site.register(BetModel)

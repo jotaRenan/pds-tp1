@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from BETinho.betinho.domain.bet import Bet
+from BETinho.betinho.domain.event.bet.bet import Bet
 
 class BetRegistrationService(ABC):
 

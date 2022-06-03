@@ -1,12 +1,11 @@
-import dataclasses
 import json
 from dateutil import parser
 
 from django.views import View
 from django.http import HttpResponse, JsonResponse
 
-from BETinho.betinho.domain.event_registration_service import EventRegistrationService
-from BETinho.betinho.domain.event_request import EventRequest
+from BETinho.betinho.domain.event.event_registration_service import EventRegistrationService
+from BETinho.betinho.domain.event.event_request import EventRequest
 
 
 class EventRegistrationView(View):
@@ -34,6 +33,8 @@ class EventRegistrationView(View):
             start = parser.isoparse(body['start']),
             location = body['location'],
         )
+
+        print(event_request)
 
         try:
             self.event_maker.create_event(event_request)

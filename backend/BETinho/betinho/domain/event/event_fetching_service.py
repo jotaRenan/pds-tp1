@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Optional, List
 from uuid import UUID
 
-from BETinho.betinho.domain.event import Event
+from BETinho.betinho.domain.event.event import Event
 
 class EventFetchingService(ABC):
 

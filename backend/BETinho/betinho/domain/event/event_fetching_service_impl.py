@@ -1,9 +1,9 @@
 from typing import Optional, List
 from uuid import UUID
 
-from BETinho.betinho.domain.event_repository import EventRepository
-from BETinho.betinho.domain.event_fetching_service import EventFetchingService
-from BETinho.betinho.domain.event import Event
+from BETinho.betinho.domain.event.event_repository import EventRepository
+from BETinho.betinho.domain.event.event_fetching_service import EventFetchingService
+from BETinho.betinho.domain.event.event import Event
 
 class EventFetchingServiceImpl(EventFetchingService):
 

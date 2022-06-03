@@ -6,9 +6,9 @@ import uuid
 from django.views import View
 from django.http import HttpResponse, JsonResponse
 
-from BETinho.betinho.domain.bet_service import BetRegistrationService
-from BETinho.betinho.domain.bet import Bet
-from BETinho.betinho.domain.event_result import EventResult
+from BETinho.betinho.domain.event.bet.bet_service import BetRegistrationService
+from BETinho.betinho.domain.event.bet.bet import Bet
+from BETinho.betinho.domain.event.event_result import EventResult
 from BETinho.betinho.domain.not_found_exception import NotFoundException
 
 class BetView(View):

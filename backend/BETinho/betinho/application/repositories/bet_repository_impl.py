@@ -1,8 +1,8 @@
 from typing import List
 from uuid import UUID
 
-from BETinho.betinho.domain.bet_repository import BetRepository
-from BETinho.betinho.domain.bet import Bet
+from BETinho.betinho.domain.event.bet.bet_repository import BetRepository
+from BETinho.betinho.domain.event.bet.bet import Bet
 from BETinho.betinho.application.models.bet_model import BetModel
 
 class BetRepositoryImpl(BetRepository):

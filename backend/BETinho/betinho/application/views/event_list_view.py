@@ -4,7 +4,7 @@ from django.views import View
 from django.http import JsonResponse, HttpResponse
 from django.core.serializers.json import DjangoJSONEncoder
 
-from BETinho.betinho.domain.event_fetching_service import EventFetchingService
+from BETinho.betinho.domain.event.event_fetching_service import EventFetchingService
 
 class EventListView(View):
     event_fetcher: EventFetchingService = None
@@ -15,7 +15,7 @@ class EventListView(View):
     def get(self, _request):
         events = self.event_fetcher.get_event_list()
         if len(events) == 0:
-            raise HttpResponse(status=204)
+            return HttpResponse(status=204)
         
         json = list(map(dataclasses.asdict, events))
         return JsonResponse(json, encoder=DjangoJSONEncoder, safe=False)

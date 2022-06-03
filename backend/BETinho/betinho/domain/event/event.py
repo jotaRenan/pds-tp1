@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import Optional
 from datetime import datetime
-from BETinho.betinho.domain.event_result import EventResult
-from BETinho.betinho.domain.team import Team
+from BETinho.betinho.domain.event.event_result import EventResult
+from BETinho.betinho.domain.team.team import Team
 from uuid import UUID
 
 
