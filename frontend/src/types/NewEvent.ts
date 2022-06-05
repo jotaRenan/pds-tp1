@@ -4,6 +4,6 @@ export interface NewEvent {
     description: string;
     start: string;
     location: string;
-    home_team: Team;
-    away_team: Team;
+    home_team: string;
+    away_team: string;
 }

@@ -1,4 +1,5 @@
 import Event from "types/Event";
+import { NewEvent } from "types/NewEvent";
 
 import api from "./api";
 import { getOddsFromEvent } from "./odd";
@@ -31,6 +32,11 @@ export async function getEvents() {
   // Código deselegante
 
   return events;
+}
+
+export async function createEvent(newEvent: NewEvent) {
+    const response = await api.post<void>(`/events/register/`, newEvent);
+    return response.data;
 }
 
 export async function getEventById(id: string) {
