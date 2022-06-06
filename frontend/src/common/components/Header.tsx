@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <Container sx={{ height: "10%", marginTop: "10px" }}>
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", marginBottom: "10px" }}>
         <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
           <img
             src={logo}
@@ -21,7 +21,7 @@ export default function Header() {
           </Link>
         </Box>
         <Box sx={{ flexShrink: 1, display: "flex" }}>
-          <Box sx={{height: "50%"}}>
+          <Box sx={{height: "100%"}}>
             <Button
               variant="outlined"
               size="medium"
@@ -30,9 +30,9 @@ export default function Header() {
               Criar Conta
             </Button>
           </Box>
-          <Box>
+          <Box sx={{justifyContent: "center" }}>
             <Button
-              sx={{ order: 1 }}
+              sx={{ order: 1, height: "100%" }}
               size="medium"
               onClick={() => navigation("/entrar")}
             >
