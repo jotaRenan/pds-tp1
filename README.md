@@ -1,4 +1,4 @@
-# BETinho, o site de apostas
+# BETinho, o site de apostas 💰
 
 Projeto relacionado à disciplina Prática em Desenvolvimento de Software 2022/01 da UFMG
 <details>
@@ -10,21 +10,22 @@ Inspirado em plataformas como o [bet365](https://pt.wikipedia.org/wiki/Bet365) e
 O site **não** realizará sorteios. Ele apenas permitirá apostas.
 </details>
 
-## Equipe
+## 👥 Equipe
 
-- Bárbara Ribeiro (@barbaragribeiro) - Desenvolvedora Fullstack
-- Jean George (@jeanGeorge) - Desenvolvedor Fullstack
-- João Pedro Renan (@jotarenan) - Desenvolvedor Fullstack
-- Luiz Berto (@luiz787) - Desenvolvedor Fullstack
+- Bárbara Ribeiro ([@barbaragribeiro](https://github.com/barbaragribeiro)) - Desenvolvedora Fullstack
+- Jean George ([@jeangeorge](https://github.com/jeangeorge)) - Desenvolvedor Fullstack
+- João Pedro Renan ([@jotarenan](https://github.com/jotarenan)) - Desenvolvedor Fullstack
+- Luiz Berto ([@luiz787](https://github.com/luiz787)) - Desenvolvedor Fullstack
 
-## Tecnologias
+## 🚀 Tecnologias
 
-Backend: Python (Django Framework)
-Frontend: React + Typescript
+- Backend: Python, usando o framework Django
+- Frontend: Typescript, usando a biblioteca React
+- Banco de Dados: MySQL
 
 <details>
   <summary>
-    <h2>Descrição do MVP</h2>
+    <h2>✍ Descrição do MVP</h2>
   </summary>
   
   O MVP do BETinho visa validar se é possível e se há interesse em utilizar o meio virtual para se realizar apostas. A nossa hipótese é de que essa demanda existe, pois apostas são uma forma de diversão e entretenimento constante na sociedade, e formas de acesso ao ambiente virtual tornaram-se ubíquas. 
@@ -39,7 +40,7 @@ Frontend: React + Typescript
 
 <details>
   <summary>
-    <h2>Tarefas técnicas</h2>
+    <h2>📝 Tarefas técnicas</h2>
   </summary>
   
 Front-end
@@ -58,7 +59,7 @@ Banco de dados
 
 <details>
   <summary>
-    <h2>User stories - backlog do produto</h2>
+    <h2>📜 User stories - backlog do produto</h2>
   </summary>  
   
   ### Listagem de eventos
@@ -131,7 +132,7 @@ Banco de dados
 
 <details>
   <summary>
-    <h2>Backlog da Sprint 01</h2>
+    <h2>👨‍💻 Backlog da Sprint 01</h2>
   </summary>
   
   A sprint 1 contemplará as seguintes histórias do backlog do produto, subdivididas em tarefas:
@@ -158,7 +159,7 @@ Banco de dados
 
 <details>
   <summary>
-    <h2>Arquitetura</h2>
+    <h2>👷‍ Arquitetura</h2>
   </summary>
   
   A arquitetura foi baseada nos princípios de DDD e seguiu os moldes da arquitetura hexagonal, sendo ambos detalhados abaixo.
