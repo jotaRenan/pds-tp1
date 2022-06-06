@@ -211,12 +211,21 @@ Banco de dados
   #### Exemplo - ver odds de um evento
   Um de nossos _endpoints_ retorna as _odds_ de determinado evento. Aqui seguiremos o fluxo que ocorre ao realizar uma chamada a esse endpoint (_/events/{event_id}/odds/_).
 
-  ![Event odds diagram](diagrams/hexagonal_architecture.png)
+  ![Event odds diagram](diagrams/hexagonal_architecture_odds_fetching.png)
   
   No diagrama, o hexágono laranja representa o limite do domínio, e o hexágono verde representa a camada de adaptadores. Os componentes em roxo (OddsView e BetRepositoryImpl) são os adaptadores, e os componentes em vermelho (OddsFetchingService e BetRepository) são as portas, que ficam dentro dos limites do domínio.
   
   O fluxo começa com uma chamada HTTP, que é tratada pelo OddsView (_controller_, adaptador de entrada). O OddsView, por sua vez, chama a porta de entrada (OddsFetchingService), que é uma fachada para realizar uma operação no domínio, e faz parte da camada de domínio. Essa porta de entrada é implementada por uma classe de serviço de dentro do domínio, OddsFetchingServiceImpl, que orquestra a operação e se comunica com outras classes de domínio. OddsFetchingServiceImpl precisa listar as apostas de um evento para calcular as _odds_, então chama a porta de saída BetRepository, que é uma fachada para acesso ao banco de dados, e também reside no domínio. Essa porta de saída é implementada pelo adaptador de saída, BetRepositoryImpl, que fica na camada de adaptadores, e faz uso das facilidades do ORM do Django para realizar o acesso ao banco de dados.
 
   Dessa forma, a camada de domínio fica livre de qualquer tipo de detalhe de tecnologia, e delimita a comunicação com o mundo externo por meio das portas e adaptadores.
+
+  #### Exemplo - registrar um evento
+
+  Outro _endpoint_ do nosso sistema faz o registro de um evento. Nesse caso, a chamada HTTP, do tipo _post_, é tratada pelo adaptador de entrada EventRegistrationView, que usa a porta de entrada EventRegistrationService para se comunicar com o domínio. O serviço que a implementa é EventRegistrationServiceImpl, o qual lida com classes do domínio para criar a nova entidade Event, e precisa se comunicar com o banco de dados para persistir a mudança, salvando o novo evento, e também para recuperar os objetos Team necessários, já que Event possui chave estrangeira para dois times, e cria um novo caso o time não esteja cadastrado ainda. Com isso, este serviço precisa usar duas portas de saída, EventRepository e TeamRepository. As duas são implementadas, respectivamente, pelos adaptadores de saída EventRepositoryImpl e TeamRepositoryImpl, os quais usam o ORM do Django para se comunicarem com o banco de dados.
+
+
+  ![Event registration diagram](diagrams/hexagonal_architecture_event_registration.png)
+
+  Os demais endpoints (EventFetchingService e BetRegistrationService) são análogos aos dois apresentados aqui, com as portas, adaptadores e serviços explicados na seção anterior.
 
 </details>
