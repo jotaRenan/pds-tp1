@@ -24,7 +24,7 @@ Frontend: React + Typescript
 
 <details>
   <summary>
-    <h2>Descrição do MVP:</h2>
+    <h2>Descrição do MVP</h2>
   </summary>
   
   O MVP do BETinho visa validar se é possível e se há interesse em utilizar o meio virtual para se realizar apostas. A nossa hipótese é de que essa demanda existe, pois apostas são uma forma de diversão e entretenimento constante na sociedade, e formas de acesso ao ambiente virtual tornaram-se ubíquas. 
@@ -153,4 +153,60 @@ Banco de dados
     - [Backend] Criar endpoint de leitura das odds de um evento - Luiz
     - [Frontend] Criar componente para exibir odds do evento - Jean
   
+</details>
+
+
+<details>
+  <summary>
+    <h2>Arquitetura</h2>
+  </summary>
+  
+  A arquitetura foi baseada nos princípios de DDD e seguiu os moldes da arquitetura hexagonal, sendo ambos detalhados abaixo.
+  
+  ### DDD
+
+  Os princípios do DDD permitem que o domínio da aplicação seja separado das tecnologias empregadas. Para atingir este objetivo, utilizamos uma linguagem ubíqua no código, a qual contém termos específicos ao nosso domínio como exemplificado a seguir:
+  - **Event**: Um evento envolvendo dois times, com um deles saindo vencedor;
+  - **Team**: Um time (que disputa eventos);
+  - **Bet**: Uma aposta de um valor X no time Y como vencedor de um evento Z;
+  - **Odd**: Multiplicador variável que representa o quanto uma aposta no vencedor correto paga.
+
+  Além disso, a aplicação foi construída utilizando objetos de tipos específicos alinhados com o DDD. Especificamente, utilizamos objetos de valor, entidades, serviços, repositórios e agregados.
+
+  - **Objetos de valor**: Estes são objetos que caracterizam um estado. Utilizamos objetos do tipo datetime (da bilbioteca padrão de Python); EventResult, que representa o estado do resultado de um evento (casa ganha, de fora ganha, empate) e é usado no cálculo das odds; EventRequest, que representa um pedido de criação de um evento; EventOdds, que contém o estado dos multiplicadores para os três possíveis resultados.
+  - **Entidades**: Entidades são objetos únicos e que possuem um identificador. Em nossa aplicação, temos Bet, Event e Team.
+  - **Serviços**: Algumas operações podem ser feitas no sistema, constituindo _serviços_. Implementamos os serviços EventRegistrationServiceImpl, EventFetchingServiceImpl, BetRegistrationServiceImpl, OddsFetchingServiceImpl, OddsCalculatorImpl.
+  - **Repositórios**: Implementamos alguns _repositórios_ que têm o papel de recuperar objetos e persistir as mudanças geradas pelos serviços no banco de dados. Especificamente, temos EventRepository, BetRepository e TeamRepository.
+  - **Agregado**: Um agregado é um conjunto coerente de entidades e objetos de valor. Em nosso sistema, Event e Team formam um agregado, sendo Event a raíz, e EventBetsSummary também, o qual contém um conjunto de Bets.
+
+  ### Arquitetura Hexagonal
+
+  #### Motivação
+  A principal motivação para o uso da arquitetura hexagonal é manter uma separação entre domínio e tecnologia, o que se alinha aos princípios do DDD. Com isso, não só o baixo acoplamento favoreve mudanças, mas também o reuso e a testabilidade do código são melhorados.
+ 
+  Como nosso backend foi escrito usando Django, foi preciso tomar o cuidado de manter todo o framework fora da nossa camada de domínio. Essa é, inclusive, uma motivação para o uso da arquitetura hexagonal: se Django for trocado no futuro por outra tecnologia, o domínio da aplicação permanece intacto, e somente novos adaptadores serão escritos para poder se "conectar" a ele.
+  
+  #### Portas e adaptadores
+
+  Nossas portas são classes abstratas que os adaptadores usam para poderem se comunicar com o domínio. No caso das portas de entrada, implementamos:
+  - EventRegistrationService
+  - EventFetchingService
+  - BetRegistrationService
+  - OddsFetchingService
+  
+  Já as portas de saída são EventRepository, BetRepository e TeamRepository.  Os adaptadores, que fazem parte da camada de infraestrutura, fazem a conexão entre o domínio e tecnologias/serviços externos. No nosso caso, os adaptadores de entrada recebem requisições HTTP através do Django e chamam os serviços correspondentes do domínio. São eles:
+  - BetView
+  - EventListView
+  - EventRegistrationView 
+  - OddsView
+ 
+  Os adaptadores de saída, por outro lado, comunicam-se com o banco de dados para buscar dados e persistir mudanças usando o ORM do Django, sendo eles BetRepositoryImpl, EventRepositoryImpl e TeamRepositoryImpl.
+  
+  #### Exemplo - ver odds de um evento
+  Um de nossos endpoints retorna as odds de determinado evento. Aqui seguiremos o fluxo que ocorre ao ser feita uma chamada a esse endpoint.
+
+  #TODO
+
+  
+
 </details>
