@@ -209,6 +209,7 @@ Banco de dados
   #### Exemplo - ver odds de um evento
   Um de nossos _endpoints_ retorna as _odds_ de determinado evento. Aqui seguiremos o fluxo que ocorre ao realizar uma chamada a esse endpoint (_/events/{event_id}/odds/_).
 
+  ![Event odds diagram](diagrams/hexagonal_architecture.png)
   
   No diagrama, o hexágono laranja representa o limite do domínio, e o hexágono verde representa a camada de adaptadores. Os componentes em roxo (OddsView e BetRepositoryImpl) são os adaptadores, e os componentes em vermelho (OddsFetchingService e BetRepository) são as portas, que ficam dentro dos limites do domínio.
   
