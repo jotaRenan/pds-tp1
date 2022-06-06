@@ -19,9 +19,10 @@ O site **não** realizará sorteios. Ele apenas permitirá apostas.
 
 ## 🚀 Tecnologias
 
-- Backend: Python, usando o framework Django
-- Frontend: Typescript, usando a biblioteca React
-- Banco de Dados: MySQL
+- Backend: [Python](https://www.python.org/), usando o framework [Django](https://www.djangoproject.com/t)
+- Frontend: [Typescript](https://www.typescriptlang.org/), usando a biblioteca [React](https://reactjs.org/)
+- Banco de Dados: [MySQL](https://www.mysql.com/)
+- Containerização: [Docker](https://www.docker.com/) com [Docker Compose](https://docs.docker.com/compose/)
 
 <details>
   <summary>
