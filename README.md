@@ -173,28 +173,32 @@ Banco de dados
 
   Além disso, a aplicação foi construída utilizando objetos de tipos específicos alinhados com o DDD. Especificamente, utilizamos objetos de valor, entidades, serviços, repositórios e agregados.
 
-  - **Objetos de valor**: Estes são objetos que caracterizam um estado. Utilizamos objetos do tipo datetime (da bilbioteca padrão de Python); EventResult, que representa o estado do resultado de um evento (casa ganha, de fora ganha, empate) e é usado no cálculo das odds; EventRequest, que representa um pedido de criação de um evento; EventOdds, que contém o estado dos multiplicadores para os três possíveis resultados.
+  - **Objetos de valor**: Estes são objetos que caracterizam um estado, que não possuem um identificador. São eles:
+      - datetime (da bilbioteca padrão de Python);
+      - EventResult, que representa o estado do resultado de um evento (casa ganha, de fora ganha, empate) e é usado no cálculo das odds
+      - EventRequest, que representa um pedido de criação de um evento;
+      - EventOdds, que contém o estado dos multiplicadores para os três possíveis resultados.
   - **Entidades**: Entidades são objetos únicos e que possuem um identificador. Em nossa aplicação, temos Bet, Event e Team.
   - **Serviços**: Algumas operações podem ser feitas no sistema, constituindo _serviços_. Implementamos os serviços EventRegistrationServiceImpl, EventFetchingServiceImpl, BetRegistrationServiceImpl, OddsFetchingServiceImpl, OddsCalculatorImpl.
   - **Repositórios**: Implementamos alguns _repositórios_ que têm o papel de recuperar objetos e persistir as mudanças geradas pelos serviços no banco de dados. Especificamente, temos EventRepository, BetRepository e TeamRepository.
-  - **Agregado**: Um agregado é um conjunto coerente de entidades e objetos de valor. Em nosso sistema, Event e Team formam um agregado, sendo Event a raíz, e EventBetsSummary também, o qual contém um conjunto de Bets.
+  - **Agregado**: Um agregado é um conjunto coerente de entidades e objetos de valor. Em nosso sistema, Event e Team formam um agregado, sendo Event a raiz.
 
   ### Arquitetura Hexagonal
 
   #### Motivação
-  A principal motivação para o uso da arquitetura hexagonal é manter uma separação entre domínio e tecnologia, o que se alinha aos princípios do DDD. Com isso, não só o baixo acoplamento favoreve mudanças, mas também o reuso e a testabilidade do código são melhorados.
+  A principal motivação para o uso da arquitetura hexagonal é manter uma separação entre domínio e tecnologia, o que se alinha aos princípios do DDD. Com isso, o baixo acoplamento não só favorece mudanças, mas também o reúso e a testabilidade do código.
  
   Como nosso backend foi escrito usando Django, foi preciso tomar o cuidado de manter todo o framework fora da nossa camada de domínio. Essa é, inclusive, uma motivação para o uso da arquitetura hexagonal: se Django for trocado no futuro por outra tecnologia, o domínio da aplicação permanece intacto, e somente novos adaptadores serão escritos para poder se "conectar" a ele.
   
   #### Portas e adaptadores
 
-  Nossas portas são classes abstratas que os adaptadores usam para poderem se comunicar com o domínio. No caso das portas de entrada, implementamos:
+  Nossas portas são classes abstratas (ABCs de Python, cujo papel nesse contexto é o mesmo de interfaces de outras linguagens) que os adaptadores usam para poderem se comunicar com o domínio. No caso das portas de entrada, temos:
   - EventRegistrationService
   - EventFetchingService
   - BetRegistrationService
   - OddsFetchingService
   
-  Já as portas de saída são EventRepository, BetRepository e TeamRepository.  Os adaptadores, que fazem parte da camada de infraestrutura, fazem a conexão entre o domínio e tecnologias/serviços externos. No nosso caso, os adaptadores de entrada recebem requisições HTTP através do Django e chamam os serviços correspondentes do domínio. São eles:
+  Já as portas de saída são EventRepository, BetRepository e TeamRepository. Os adaptadores, que fazem parte da camada de infraestrutura, fazem a conexão entre o domínio e tecnologias/serviços externos. No nosso caso, os adaptadores de entrada recebem requisições HTTP através do Django e chamam os serviços correspondentes do domínio. São eles:
   - BetView
   - EventListView
   - EventRegistrationView 
@@ -203,10 +207,13 @@ Banco de dados
   Os adaptadores de saída, por outro lado, comunicam-se com o banco de dados para buscar dados e persistir mudanças usando o ORM do Django, sendo eles BetRepositoryImpl, EventRepositoryImpl e TeamRepositoryImpl.
   
   #### Exemplo - ver odds de um evento
-  Um de nossos endpoints retorna as odds de determinado evento. Aqui seguiremos o fluxo que ocorre ao ser feita uma chamada a esse endpoint.
-
-  #TODO
+  Um de nossos _endpoints_ retorna as _odds_ de determinado evento. Aqui seguiremos o fluxo que ocorre ao realizar uma chamada a esse endpoint (_/events/{event_id}/odds/_).
 
   
+  No diagrama, o hexágono laranja representa o limite do domínio, e o hexágono verde representa a camada de adaptadores. Os componentes em roxo (OddsView e BetRepositoryImpl) são os adaptadores, e os componentes em vermelho (OddsFetchingService e BetRepository) são as portas, que ficam dentro dos limites do domínio.
+  
+  O fluxo começa com uma chamada HTTP, que é tratada pelo OddsView (_controller_, adaptador de entrada). O OddsView, por sua vez, chama a porta de entrada (OddsFetchingService), que é uma fachada para realizar uma operação no domínio, e faz parte da camada de domínio. Essa porta de entrada é implementada por uma classe de serviço de dentro do domínio, OddsFetchingServiceImpl, que orquestra a operação e se comunica com outras classes de domínio. OddsFetchingServiceImpl precisa listar as apostas de um evento para calcular as _odds_, então chama a porta de saída BetRepository, que é uma fachada para acesso ao banco de dados, e também reside no domínio. Essa porta de saída é implementada pelo adaptador de saída, BetRepositoryImpl, que fica na camada de adaptadores, e faz uso das facilidades do ORM do Django para realizar o acesso ao banco de dados.
+
+  Dessa forma, a camada de domínio fica livre de qualquer tipo de detalhe de tecnologia, e delimita a comunicação com o mundo externo por meio das portas e adaptadores.
 
 </details>
