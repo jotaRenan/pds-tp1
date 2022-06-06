@@ -221,10 +221,9 @@ Banco de dados
 
   #### Exemplo - registrar um evento
 
-  Outro _endpoint_ do nosso sistema faz o registro de um evento. Nesse caso, a chamada HTTP, do tipo _post_, é tratada pelo adaptador de entrada EventRegistrationView, que usa a porta de entrada EventRegistrationService para se comunicar com o domínio. O serviço que a implementa é EventRegistrationServiceImpl, o qual lida com classes do domínio para criar a nova entidade Event, e precisa se comunicar com o banco de dados para persistir a mudança, salvando o novo evento, e também para recuperar os objetos Team necessários, já que Event possui chave estrangeira para dois times, e cria um novo caso o time não esteja cadastrado ainda. Com isso, este serviço precisa usar duas portas de saída, EventRepository e TeamRepository. As duas são implementadas, respectivamente, pelos adaptadores de saída EventRepositoryImpl e TeamRepositoryImpl, os quais usam o ORM do Django para se comunicarem com o banco de dados.
-
-
   ![Event registration diagram](diagrams/hexagonal_architecture_event_registration.png)
+
+  Outro _endpoint_ do nosso sistema faz o registro de um evento. Nesse caso, a chamada HTTP, do tipo _post_, é tratada pelo adaptador de entrada EventRegistrationView, que usa a porta de entrada EventRegistrationService para se comunicar com o domínio. O serviço que a implementa é EventRegistrationServiceImpl, o qual lida com classes do domínio para criar a nova entidade Event, e precisa se comunicar com o banco de dados para persistir a mudança, salvando o novo evento, e também para recuperar os objetos Team necessários, já que Event possui chave estrangeira para dois times, e cria um novo caso o time não esteja cadastrado ainda. Com isso, este serviço precisa usar duas portas de saída, EventRepository e TeamRepository. As duas são implementadas, respectivamente, pelos adaptadores de saída EventRepositoryImpl e TeamRepositoryImpl, os quais usam o ORM do Django para se comunicarem com o banco de dados.
 
   Os demais endpoints (EventFetchingService e BetRegistrationService) são análogos aos dois apresentados aqui, com as portas, adaptadores e serviços explicados na seção anterior.
 
