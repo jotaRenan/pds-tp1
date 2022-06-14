@@ -1,9 +1,12 @@
 name: Continuous integration
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -19,5 +22,8 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r backend/requirements.txt
+          pip install coverage
       - name: Run backend unit tests
-        run: python3 -m unittest discover -s backend
+        run: coverage run -m unittest discover -s backend
+      - name: Upload coverage do Codecov
+        uses: codecov/codecov-action@v2
