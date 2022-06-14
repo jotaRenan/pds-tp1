@@ -24,7 +24,7 @@ jobs:
           pip install -r backend/requirements.txt
           pip install coverage
       - name: Run backend unit tests
-        run: python run -m unittest discover -s backend
+        run: python -m unittest discover -s backend
 
   coverage:
     runs-on: ubuntu-latest
