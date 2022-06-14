@@ -40,11 +40,13 @@ jobs:
           pip install -r backend/requirements.txt
           pip install coverage
       - name: Run backend unit tests with coverage
-        run: coverage run --source BETinho -m unittest discover -s backend
+        run: coverage run --source backend/BETinho -m unittest discover -s backend
+      - name: Generate coverage xml report
+        run: coverage xml
       - name: Show raw coverage report
         run: coverage report
       - uses: codecov/codecov-action@v2
         with:
-          files: ".coverage"
+          files: "coverage.xml"
           fail_ci_if_error: true
           verbose: true
