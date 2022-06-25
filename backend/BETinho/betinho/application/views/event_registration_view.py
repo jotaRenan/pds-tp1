@@ -68,7 +68,7 @@ class EventRegistrationView(View):
             errors.append('Location should be a string')
 
         if 'start' not in body:
-            errors.append('Start date name is missing')
+            errors.append('Start date is missing')
         else:
             try:
                 _ = parser.isoparse(body['start'])
