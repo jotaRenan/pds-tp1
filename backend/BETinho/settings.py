@@ -95,7 +95,7 @@ DATABASES = {
     }
 }
 
-if 'test' in sys.argv:
+if 'test' in sys.argv or 'testserver' in sys.argv:
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'mydatabase'
