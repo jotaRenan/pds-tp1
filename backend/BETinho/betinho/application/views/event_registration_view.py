@@ -14,8 +14,8 @@ class EventRegistrationView(View):
     def __init__(self, event_maker: EventRegistrationService) -> None:
         self.event_maker = event_maker
 
-    def post(self, _request):
-        body = json.loads(_request.body)
+    def post(self, request):
+        body = json.loads(request.body)
 
         print(body)
 
