@@ -9,7 +9,7 @@ from BETinho.betinho.domain.event.event import Team
 from BETinho.betinho.domain.event.bet.bet import Bet
 from BETinho.betinho.domain.event.bet.bet_service_impl import BetRegistrationServiceImpl
 from BETinho.betinho.domain.not_found_exception import NotFoundException
-from backend.BETinho.betinho.domain.event.event_result import EventResult
+from BETinho.betinho.domain.event.event_result import EventResult
 
 class TestBetRegistrationServiceImpl(unittest.TestCase):
     def setUp(self) -> None:

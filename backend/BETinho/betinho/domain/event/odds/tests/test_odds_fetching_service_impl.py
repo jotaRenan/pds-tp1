@@ -6,7 +6,7 @@ from unittest.mock import Mock
 from BETinho.betinho.domain.event.bet.bet import Bet
 from BETinho.betinho.domain.event.event_result import EventResult
 from BETinho.betinho.domain.event.odds.odds_fetching_service_impl import OddsFetchingServiceImpl
-from backend.BETinho.betinho.domain.event.event_odds import EventOdds
+from BETinho.betinho.domain.event.event_odds import EventOdds
 
 class TestOddsFetchingServiceImpl(unittest.TestCase):
     def setUp(self) -> None:
