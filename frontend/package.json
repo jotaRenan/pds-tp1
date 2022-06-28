@@ -30,9 +30,9 @@
     "test": "react-scripts test",
     "test:e2e": "cypress run --headed",
     "eject": "react-scripts eject",
-    "ci:start-server": "http-server ./build -p 3000",
+    "ci:start-server": "python3 ../backend/manage.py testserver ../backend/empty_fixture.json",
     "cy:run": "cypress run --headless --browser --chrome",
-    "ci:cy-run": "start-server-and-test ci:start-server http-get://127.0.0.1:3000 cy:run"
+    "ci:cy-run": "start-server-and-test ci:start-server http-get://127.0.0.1:8000/events/ cy:run"
   },
   "eslintConfig": {
     "extends": [
