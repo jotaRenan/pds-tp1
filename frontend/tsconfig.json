@@ -22,10 +22,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": ["jest", "node", ]
   },
   "include": [
-    "src",
+    "src/**/*",
 	"src/custom.d.ts"
   ],
   "exclude": ["node_modules"]
