@@ -29,7 +29,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:e2e": "cypress run --headed",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "ci:start-server": "http-server ./build -p 3000",
+    "cy:run": "cypress run --headless --browser --chrome",
+    "ci:cy-run": "start-server-and-test ci:start-server http-get://127.0.0.1:3000 cy:run"
   },
   "eslintConfig": {
     "extends": [
@@ -55,7 +58,9 @@
     "@types/node": "^18.0.0",
     "@types/react-router-dom": "^5.3.3",
     "cypress": "^10.2.0",
+    "http-server": "^14.1.1",
     "jest": "^28.1.1",
+    "start-server-and-test": "^1.14.0",
     "ts-jest": "^28.0.5"
   }
 }
