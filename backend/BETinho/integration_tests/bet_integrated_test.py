@@ -6,9 +6,6 @@ class BetIntegrationTest(TestCase):
     def setUp(self) -> None:
         pass
 
-    def test_bet_creation(self):
-        pass
-
 
     def test_bet_creation_invalid_event_id(self):
         client = Client()
@@ -39,7 +36,3 @@ class BetIntegrationTest(TestCase):
                 'result' : 1
             }, content_type='application/json')
         self.assertEqual(response.status_code, 204)
-
-
-
-
