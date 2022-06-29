@@ -133,6 +133,7 @@ export default function EventDetails({ bet }: EventDetailsProps) {
                     value={result}
                     onChange={(e) => setResult(e.target.value)}
                     select
+                    data-testid="select-palpite"
                     label="Palpite"
                   >
                     <MenuItem value="1">Vitória do Mandante</MenuItem>

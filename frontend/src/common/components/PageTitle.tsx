@@ -10,7 +10,7 @@ export default function PageTitle({ text, backButtonUrl }: PageTitleProps) {
   return (
     <Grid sx={{ marginBottom: "40px", marginTop: "40px" }}>
       <Typography variant="h5" align="left" color="primary">
-        {backButtonUrl && <BackButton href={backButtonUrl} />}
+        {backButtonUrl && <BackButton data-testid="back-button" href={backButtonUrl} />}
         {text}
       </Typography>
       <Divider variant="fullWidth" />
