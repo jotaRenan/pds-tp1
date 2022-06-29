@@ -32,8 +32,6 @@ class TestEventView(unittest.TestCase):
     def setUp(self):
         self.event_fetcher = Mock()
         self.event_view = EventView(self.event_fetcher)
-        self.event_list_view = EventListView(self.event_fetcher)
-        self.event_registration_view = EventRegistrationView(self.event_fetcher)
 
     def test_get_request_returns_400(self):
         request = Mock()
@@ -46,16 +44,3 @@ class TestEventView(unittest.TestCase):
             invalid_valid_uuid = str(uuid.uuid4())
             request = Mock()
             self.event_view.get(request, invalid_valid_uuid)
-
-    def test_get_request_returns_204(self):
-        # TODO
-        # body = self._get_default_body()
-        # registration_request = Mock()
-        # registration_request.body = json.dumps(body)
-        # list_request = Mock()
-        # self.event_registration_view.post(registration_request)
-        # self.event_fetcher.get_event_list = Mock(return_value=[self._get_default_body()])
-        # response = self.event_list_view.get(list_request)
-        # valid_id = json.loads(response.content)
-        self.assertEqual(1, 1)
-
