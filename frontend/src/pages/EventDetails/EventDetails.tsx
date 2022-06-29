@@ -149,6 +149,7 @@ export default function EventDetails({ bet }: EventDetailsProps) {
                       step: "0.01",
                       min: "0.01",
                       lang: "pt-BR",
+                      "data-testid": 'valor'
                     }}
                     InputProps={{
                       startAdornment: (

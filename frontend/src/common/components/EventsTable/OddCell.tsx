@@ -1,11 +1,11 @@
-import { TableCell, Tooltip } from "@mui/material";
+import { TableCell, TableCellProps, Tooltip } from "@mui/material";
 import { useMemo } from "react";
 
 interface BetCellProps {
   value?: number;
 }
 
-export default function BetCell({ value }: BetCellProps) {
+export default function BetCell({ value, ...tableCellProps }: BetCellProps & TableCellProps) {
   const tooltipMessage = useMemo(
     () =>
       value === 0
@@ -25,7 +25,7 @@ export default function BetCell({ value }: BetCellProps) {
   }
 
   return (
-    <TableCell align="right">
+    <TableCell align="right" {...tableCellProps}>
       {tooltipMessage ? (
         <Tooltip title={tooltipMessage} placement="top">
           <span>{oddValue(value)}</span>

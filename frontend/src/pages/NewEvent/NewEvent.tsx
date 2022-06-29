@@ -61,31 +61,42 @@ export default function NewEventPage() {
             style={{ gridColumn: "1 / -1" }}
             placeholder="Descrição"
             onChange={(e: any) => setDescription(e.target.value)}
+            inputProps={{"data-testid": 'descricao'}}
             required
           />
           <TextField
             label="Time A"
             value={homeTeam}
             onChange={(e) => setHomeTeam(e.target.value)}
+            inputProps={{"data-testid": 'time-a'}}
             required
           />
           <TextField
             label="Time B"
             value={awayTeam}
             onChange={(e) => setAwayTeam(e.target.value)}
+            inputProps={{"data-testid": 'time-b'}}
             required
           />
           <TextField
             label="Localização"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+            inputProps={{"data-testid": 'localizacao'}}
             required
           />
           <DateTimePicker
             label="Horário"
             value={start}
-            renderInput={(params: any) => <TextField {...params} />}
-            onChange={(newValue: Date | null) => setStart(newValue)}
+            renderInput={(params: any) => <TextField 
+              {...params}
+              inputProps={{"data-testid": 'horario', ...params.inputProps}}
+
+            />}
+            onChange={(newValue: Date | null) => {
+              console.log(newValue);
+              setStart(newValue);
+            }}
           />
           <Button
             type="submit"

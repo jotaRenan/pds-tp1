@@ -49,7 +49,7 @@ export default function EventsTable({
           </TableRow>
         </TableHead>
         <TableBody>
-          {eventsFiltered.map((event) => (
+          {eventsFiltered.map((event, i) => (
             <TableRow
               hover
               key={JSON.stringify(event)}
@@ -64,9 +64,9 @@ export default function EventsTable({
               <TableCell component="th" scope="row">
                 {event.home_team.name} x {event.away_team.name}
               </TableCell>
-			  <BetCell value={event.odd?.home}/>
-			  <BetCell value={event.odd?.draw}/>
-			  <BetCell value={event.odd?.away}/>
+              <BetCell value={event.odd?.home} data-testid={`home-odd-${i+1}`} />
+              <BetCell value={event.odd?.draw} data-testid={`draw-odd-${i+1}`} />
+              <BetCell value={event.odd?.away} data-testid={`away-odd-${i+1}`} />
               {bet && (
                 <TableCell align="right">
                   <Button
