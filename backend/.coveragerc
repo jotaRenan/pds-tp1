@@ -1,0 +1,4 @@
+[report]
+omit =
+    */test*
+    */integration_tests/*
