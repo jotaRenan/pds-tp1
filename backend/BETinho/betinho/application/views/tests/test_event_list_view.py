@@ -1,13 +1,11 @@
 from datetime import datetime
 import unittest
-from urllib import response
 import uuid
 import json
 from unittest.mock import Mock
 
 from django.conf import settings
 from BETinho.betinho.application.views.event_list_view import EventListView
-from BETinho.betinho.application.views.event_registration_view import EventRegistrationView
 from BETinho.betinho.domain.event.event import Event
 from BETinho.betinho.domain.team.team import Team
 
