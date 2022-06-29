@@ -29,10 +29,10 @@ class Event:
         return self.result is not None
 
     def is_home_win(self):
-        return self.is_finished and self.result == EventResult.HOME_WIN
+        return self.is_finished() and self.result == EventResult.HOME_WIN
 
     def is_away_win(self):
-        return self.is_finished and self.result == EventResult.AWAY_WIN
+        return self.is_finished() and self.result == EventResult.AWAY_WIN
     
     def is_draw(self):
-        return self.is_finished and self.result == EventResult.DRAW
+        return self.is_finished() and self.result == EventResult.DRAW

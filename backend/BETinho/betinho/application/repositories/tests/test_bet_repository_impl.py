@@ -17,24 +17,6 @@ class TestBetRepositoryImpl(unittest.TestCase):
         self.mock_bet_model_module = sys.modules['BETinho.betinho.application.models.bet_model']
         self.bet_repository = BetRepositoryImpl()
 
-    def test_get_bets_by_event_id(self):
-        event_id = uuid.uuid4()
-        bet = Bet(uuid.uuid4(), event_id, Decimal(10), EventResult.AWAY_WIN)
-
-        self.bet_repository.save(bet)
-
-        from_bet_return_mock = Mock()
-        from_bet_return_mock.get_bets_by_event_id = Mock(return_value=[bet])
-
-        self.mock_bet_model_module.BetModel.from_bet = Mock()
-        
-        self.bet_repository.get_bets_by_event_id = Mock(return_value=[bet])
-        self.bet_repository.get_bets_by_event_id(event_id)
-
-        # TODO: fix
-        # from_bet_return_mock.get_bets_by_event_id.assert_called_once()
-        # self.mock_bet_model_module.BetModel.from_bet.assert_called_once_with(event_id)
-
     def test_save_calls_bet_model_save(self):
         bet = Bet(uuid.uuid4(), uuid.uuid4(), Decimal(10), EventResult.AWAY_WIN)
 

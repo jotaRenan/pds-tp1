@@ -42,9 +42,9 @@ jobs:
       - name: Run backend unit tests with coverage
         run: coverage run --source backend/BETinho -m unittest discover -s backend
       - name: Generate coverage xml report
-        run: coverage xml --omit="*/test*"
+        run: coverage xml --rcfile=backend/.coveragerc
       - name: Show raw coverage report
-        run: coverage report
+        run: coverage report --rcfile=backend/.coveragerc
       - uses: codecov/codecov-action@v2
         with:
           files: "coverage.xml"

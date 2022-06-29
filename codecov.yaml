@@ -1,2 +1,3 @@
 ignore:
-  - "*/tests/test_*.py”
+  - "*/tests/test_*.py"
+  - "backend/BETinho/integration_tests/*"

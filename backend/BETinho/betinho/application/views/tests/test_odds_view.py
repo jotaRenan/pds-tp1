@@ -35,16 +35,3 @@ class TestOddsView(unittest.TestCase):
         self.assertEqual({
             'message': message
         }, json.loads(response.content))
-
-    def test_get_request_returns_204(self):
-        # TODO
-        # body = self._get_default_body()
-        # registration_request = Mock()
-        # registration_request.body = json.dumps(body)
-        # list_request = Mock()
-        # self.event_registration_view.post(registration_request)
-        # self.odds_fetcher.get_event_list = Mock(return_value=[self._get_default_body()])
-        # response = self.event_list_view.get(list_request)
-        # valid_id = json.loads(response.content)
-        self.assertEqual(1, 1)
-

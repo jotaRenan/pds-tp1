@@ -11,6 +11,7 @@ from BETinho.betinho.domain.team.team import Team
 
 sys.modules['BETinho.betinho.application.models.event_model'] = Mock()
 
+from BETinho.betinho.application.models.event_model import EventModel
 from BETinho.betinho.application.repositories.event_repository_impl import EventRepositoryImpl
 
 class TestEventRepositoryImpl(unittest.TestCase):
@@ -21,35 +22,34 @@ class TestEventRepositoryImpl(unittest.TestCase):
 
     def test_get_event_by_id_fail(self):
         event_id = uuid.uuid4()
+        EventModel.DoesNotExist = Exception
         
-        from_event_return_mock = Mock()
-        from_event_return_mock.get_event_by_id = Mock(return_value=None)
-
-        self.mock_event_model_module.EventModel.from_event = Mock(return_value=from_event_return_mock)
+        self.mock_event_model_module.EventModel.objects.get = Mock(return_value=None)
+        self.mock_event_model_module.EventModel.objects.get.side_effect = EventModel.DoesNotExist('Does not exist')
         
-        self.event_repository.get_event_by_id(event_id)
+        actual = self.event_repository.get_event_by_id(event_id)
 
-        # TODO: fix
-        # from_event_return_mock.get_event_by_id.assert_called_once()
-        # self.mock_event_model_module.EventModel.from_event.assert_called_once_with(event_id)
-
-
-    def test_get_event_by_id_success(self):
-        # TODO: fix
-        self.assertEqual(1, 1)
+        self.assertIsNone(actual)
 
     def test_get_event_list(self):
-        # TODO: fix
-        from_event_return_mock = Mock()
-        from_event_return_mock.get_event_list = Mock(return_value=[])
+        mock_event_model = Mock()
 
-        self.mock_event_model_module.EventModel.from_event = Mock(return_value=from_event_return_mock)
+        expected_event = Event(
+                uuid.uuid4(),
+                Team(uuid.uuid4(), "Emelec"),
+                Team(uuid.uuid4(), "Atlético"),
+                "Oitavas Libertadores",
+                datetime(2022, 6, 28),
+                "Equador",
+                EventResult.DRAW
+            )
+        mock_event_model.to_event = Mock(return_value=expected_event)
+        self.mock_event_model_module.EventModel.objects.all = Mock(return_value=[mock_event_model])
         
-        self.event_repository.get_event_list = Mock(return_value=[])
-        self.event_repository.get_event_list()
+        actual = self.event_repository.get_event_list()
 
-        from_event_return_mock.get_event_list.assert_called_once()
-        self.mock_event_model_module.EventModel.from_event.assert_called_once()
+        self.assertEqual([expected_event], actual)
+        mock_event_model.to_event.assert_called_once()
 
     def test_save_calls_event_model_save(self):
         home_team = Team(uuid.uuid4(), "home_team")
